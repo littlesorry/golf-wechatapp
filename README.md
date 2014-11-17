@@ -1,4 +1,4 @@
 golf-wechatapp
 ==============
 
-A WeChat web app.
+A WeChat web app for golf entertainment.
