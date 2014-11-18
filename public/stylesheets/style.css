@@ -1,8 +1,24 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+		body, div, canvas
+		{
+			image-rendering: optimizeSpeed;
+			-webkit-image-rendering: optimizeSpeed;
+			-webkit-interpolation-mode: nearest-neighbor;
+		}
 
-a {
-  color: #00B7FF;
-}
+		body {
+			overflow: hidden;
+		}
+
+		body{padding:0; margin:0;font-size:12px;background-color:#000;}
+		body, html{height: 100%;}
+		#outer{height:100%; overflow:hidden; position:relative; width:100%;}
+		#outer[id]{display:table; position:static;}
+		#middle{position:absolute; top:50%;} /* for ie only*/
+		#middle[id]{display:table-cell; vertical-align:middle; position:static;}
+
+		#container {
+			background: -moz-linear-gradient(top, #fff, #eee);
+			background: -webkit-linear-gradient(top, #fff, #eee);
+			background: -o-linear-gradient(top, #fff, #eee);
+			overflow: hidden;
+		}
