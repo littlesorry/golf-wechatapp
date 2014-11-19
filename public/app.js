@@ -262,28 +262,73 @@
 		if(this.pickPage == null) {
 			this.pickPage = buildBackground("pickPage", "page2");
 
-			var pickBtn = new Q.Button({id:"pickBtn", image: ns.R.getImage("button")});
-			pickBtn.setUpState({rect:[0,0,520,580]});
-			pickBtn.width= 520;
-			pickBtn.height = 580;
-			pickBtn.scaleX = this.pickPage.scaleX;
-			pickBtn.scaleY = this.pickPage.scaleY;
-			pickBtn.x = this.width * 0.09;
-			pickBtn.y = this.height * 0.32;
-			pickBtn.on(game.EVENTS.TAP, function(e) {
+			var pickBtnRed1 = new Q.Button({id:"pickBtnRed1", image: ns.R.getImage("pickBagRed1")});
+			pickBtnRed1.setUpState({rect:[0,0,255,305]});
+			pickBtnRed1.width= 255;
+			pickBtnRed1.height = 305;
+			pickBtnRed1.scaleX = this.pickPage.scaleX;
+			pickBtnRed1.scaleY = this.pickPage.scaleY;
+			pickBtnRed1.x = this.width * 0.11;
+			pickBtnRed1.y = this.height * 0.32;
+			pickBtnRed1.on(game.EVENTS.TAP, function(e) {
+				game.displayPage3('red');
+			});
+
+			this.pickBtnRed1 = pickBtnRed1;
+
+			var pickBtnBlue1 = new Q.Button({id:"pickBtnBlue1", image: ns.R.getImage("pickBagBlue1")});
+			pickBtnBlue1.setUpState({rect:[0,0,266,304]});
+			pickBtnBlue1.width= 266;
+			pickBtnBlue1.height = 304;
+			pickBtnBlue1.scaleX = this.pickPage.scaleX;
+			pickBtnBlue1.scaleY = this.pickPage.scaleY;
+			pickBtnBlue1.x = this.width * 0.52;
+			pickBtnBlue1.y = this.height * 0.32;
+			pickBtnBlue1.on(game.EVENTS.TAP, function(e) {
 				game.displayPage3();
 			});
 
-			this.pickBtn = pickBtn;
+			this.pickBtnBlue1 = pickBtnBlue1;
+
+			var pickBtnRed2 = new Q.Button({id:"pickBtnRed2", image: ns.R.getImage("pickBagRed2")});
+			pickBtnRed2.setUpState({rect:[0,0,266,305]});
+			pickBtnRed2.width= 266;
+			pickBtnRed2.height = 305;
+			pickBtnRed2.scaleX = this.pickPage.scaleX;
+			pickBtnRed2.scaleY = this.pickPage.scaleY;
+			pickBtnRed2.x = this.width * 0.52;
+			pickBtnRed2.y = this.height * 0.585;
+			pickBtnRed2.on(game.EVENTS.TAP, function(e) {
+				game.displayPage3('red');
+			});
+
+			this.pickBtnRed2 = pickBtnRed2;
+
+			var pickBtnBlue2 = new Q.Button({id:"pickBtnBlue2", image: ns.R.getImage("pickBagBlue2")});
+			pickBtnBlue2.setUpState({rect:[0,0,274,306]});
+			pickBtnBlue2.width= 274;
+			pickBtnBlue2.height = 306;
+			pickBtnBlue2.scaleX = this.pickPage.scaleX;
+			pickBtnBlue2.scaleY = this.pickPage.scaleY;
+			pickBtnBlue2.x = this.width * 0.09;
+			pickBtnBlue2.y = this.height * 0.585;
+			pickBtnBlue2.on(game.EVENTS.TAP, function(e) {
+				game.displayPage3();
+			});
+
+			this.pickBtnBlue2 = pickBtnBlue2;
 		}
 		
 		this.stage.addChild(
 					this.pickPage
-					, this.pickBtn);
+					, this.pickBtnRed1
+					, this.pickBtnRed2
+					, this.pickBtnBlue1
+					, this.pickBtnBlue2);
 		this.stage.step();
 	};
 
-	game.displayPage3 = function() {	
+	game.displayPage3 = function(bag) {	
 		if(this.openPage == null) {
 			this.openPage = buildBackground("openPage", "page3");
 
@@ -291,8 +336,8 @@
 			openBtn.setUpState({rect:[0,0,390,79]});
 			openBtn.width= 390;
 			openBtn.height = 79;
-			openBtn.scaleX = this.startPage.scaleX;
-			openBtn.scaleY = this.startPage.scaleY;
+			openBtn.scaleX = this.openPage.scaleX;
+			openBtn.scaleY = this.openPage.scaleY;
 			openBtn.x = this.width * 0.2;
 			openBtn.y = this.height * 0.499;
 			openBtn.on(game.EVENTS.TAP, function(e) {
@@ -300,10 +345,19 @@
 			});
 
 			this.openBtn = openBtn;
+
+			var pickedBag = new Q.Bitmap({"id": "pickedBag", "image": ns.R.getImage(bag === 'red'? 'pickedRed' : 'pickedBlue')});
+	        pickedBag.scaleX = this.openPage.scaleX;
+	        pickedBag.scaleY = this.openPage.scaleY;
+	        pickedBag.x = this.width * 0.25;
+	        pickedBag.y = this.height * 0.17;
+
+	        this.pickedBag = pickedBag;
 		}
 		
 		this.stage.addChild(
 					this.openPage
+					, this.pickedBag
 					, this.openBtn);
 		this.stage.step();
 	};
@@ -312,23 +366,56 @@
 		if(this.goldPrizePage == null) {
 			this.goldPrizePage = buildBackground("goldPrizePage", "page4");
 
-			var openBtn = new Q.Button({id:"openBtn", image: ns.R.getImage("button")});
-			openBtn.setUpState({rect:[0,0,390,79]});
-			openBtn.width= 390;
-			openBtn.height = 79;
-			openBtn.scaleX = this.startPage.scaleX;
-			openBtn.scaleY = this.startPage.scaleY;
-			openBtn.x = this.width * 0.2;
-			openBtn.y = this.height * 0.499;
-			openBtn.on(game.EVENTS.TAP, function(e) {
+			var reserveBtn = new Q.Button({id:"reserveBtn", image: ns.R.getImage("button")});
+			reserveBtn.setUpState({rect:[0,0,390,79]});
+			reserveBtn.width= 390;
+			reserveBtn.height = 79;
+			reserveBtn.scaleX = this.goldPrizePage.scaleX;
+			reserveBtn.scaleY = this.goldPrizePage.scaleY;
+			reserveBtn.x = this.width * 0.18;
+			reserveBtn.y = this.height * 0.568;
+			reserveBtn.on(game.EVENTS.TAP, function(e) {
+				game.displayPage7();
 			});
 
-			this.openBtn = openBtn;
+			this.reserveBtn = reserveBtn;
+
+			var bagCode = new Q.Text({id: "bagCode"});
+			bagCode.width = 245;
+			bagCode.height = 52;
+			bagCode.scaleX = this.goldPrizePage.scaleX;
+			bagCode.scaleY = this.goldPrizePage.scaleY;
+			bagCode.x = this.width * 0.366;
+			bagCode.y = this.height * 0.388;
+			bagCode.textAlign = "start"; 
+			bagCode.lineSpacing = 35; 
+			bagCode.color = "#fff";
+			bagCode.text = "TEST0123";
+			bagCode.font = "40px arial"
+
+			this.bagCode = bagCode;
+
+			var couponCode = new Q.Text({id: "couponCode"});
+			couponCode.width = 220;
+			couponCode.height = 52;
+			couponCode.scaleX = this.goldPrizePage.scaleX;
+			couponCode.scaleY = this.goldPrizePage.scaleY;
+			couponCode.x = this.width * 0.42;
+			couponCode.y = this.height * 0.448;
+			couponCode.textAlign = "start"; 
+			couponCode.lineSpacing = 35; 
+			couponCode.color = "#fff";
+			couponCode.text = "TEST0123";
+			couponCode.font = "40px arial"
+
+			this.couponCode = couponCode;
 		}
 		
 		this.stage.addChild(
 					this.goldPrizePage
-					, this.openBtn);
+					, this.bagCode
+					, this.couponCode
+					, this.reserveBtn);
 		this.stage.step();
 	};
 
@@ -340,19 +427,98 @@
 			openBtn2.setUpState({rect:[0,0,390,79]});
 			openBtn2.width= 390;
 			openBtn2.height = 79;
-			openBtn2.scaleX = this.startPage.scaleX;
-			openBtn2.scaleY = this.startPage.scaleY;
+			openBtn2.scaleX = this.silverPrizePage.scaleX;
+			openBtn2.scaleY = this.silverPrizePage.scaleY;
 			openBtn2.x = this.width * 0.2;
 			openBtn2.y = this.height * 0.499;
 			openBtn2.on(game.EVENTS.TAP, function(e) {
 			});
 
 			this.openBtn2 = openBtn2;
-		}
+
+			var silverCode = new Q.Text({id: "silverCode"});
+			silverCode.width = 220;
+			silverCode.height = 52;
+			silverCode.scaleX = this.silverPrizePage.scaleX;
+			silverCode.scaleY = this.silverPrizePage.scaleY;
+			silverCode.x = this.width * 0.427;
+			silverCode.y = this.height * 0.385;
+			silverCode.textAlign = "start"; 
+			silverCode.lineSpacing = 35; 
+			silverCode.color = "#fff";
+			silverCode.text = "TEST0123";
+			silverCode.font = "40px arial"
+
+			this.silverCode = silverCode;
+		};
 		
 		this.stage.addChild(
 					this.silverPrizePage
+					, this.silverCode
 					, this.openBtn2);
+		this.stage.step();
+	};
+
+	game.displayPage7 = function(bag) {	
+		if(this.cityPage == null) {
+			this.cityPage = buildBackground("cityPage", "page7");
+
+			var queryBtn = new Q.Button({id:"queryBtn", image: ns.R.getImage("button")});
+			queryBtn.setUpState({rect:[0,0,390,79]});
+			queryBtn.width= 390;
+			queryBtn.height = 79;
+			queryBtn.scaleX = this.cityPage.scaleX;
+			queryBtn.scaleY = this.cityPage.scaleY;
+			queryBtn.x = this.width * 0.2;
+			queryBtn.y = this.height * 0.39;
+			queryBtn.on(game.EVENTS.TAP, function(e) {
+
+			});
+
+			this.queryBtn = queryBtn;
+
+			var stateText = new Q.Text({id: "stateText"});
+			stateText.width = 220;
+			stateText.height = 52;
+			stateText.scaleX = this.cityPage.scaleX;
+			stateText.scaleY = this.cityPage.scaleY;
+			stateText.x = this.width * 0.075;
+			stateText.y = this.height * 0.315;
+			stateText.textAlign = "start"; 
+			stateText.lineSpacing = 35; 
+			stateText.color = "#fff";
+			stateText.text = "省份";
+			stateText.font = "35px 黑体";
+			stateText.on(game.EVENTS.TAP, function(e) {
+				console.log(1);
+			});
+
+			this.stateText = stateText;
+
+			var cityText = new Q.Text({id: "cityText"});
+			cityText.width = 220;
+			cityText.height = 52;
+			cityText.scaleX = this.cityPage.scaleX;
+			cityText.scaleY = this.cityPage.scaleY;
+			cityText.x = this.width * 0.535;
+			cityText.y = this.height * 0.315;
+			cityText.textAlign = "start"; 
+			cityText.lineSpacing = 35; 
+			cityText.color = "#fff";
+			cityText.text = "城市";
+			cityText.font = "35px 黑体";
+			cityText.on(game.EVENTS.TAP, function(e) {
+				console.log(1);
+			});
+
+			this.cityText = cityText;
+		}
+		
+		this.stage.addChild(
+					this.cityPage
+					, this.stateText
+					, this.cityText
+					, this.queryBtn);
 		this.stage.step();
 	};
 
