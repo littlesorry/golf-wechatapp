@@ -9,7 +9,7 @@
 			overflow: hidden;
 		}
 
-		body{padding:0; margin:0;font-size:12px;background-color:#000;}
+		body{padding:0; margin:0;font-size:12px;background-color:#143e79;}
 		body, html{height: 100%;}
 		#outer{height:100%; overflow:hidden; position:relative; width:100%;}
 		#outer[id]{display:table; position:static;}
@@ -17,8 +17,8 @@
 		#middle[id]{display:table-cell; vertical-align:middle; position:static;}
 
 		#container {
-			background: -moz-linear-gradient(top, #fff, #eee);
-			background: -webkit-linear-gradient(top, #fff, #eee);
-			background: -o-linear-gradient(top, #fff, #eee);
+			background: -moz-linear-gradient(top, #143e79, #143e79);
+			background: -webkit-linear-gradient(top, #143e79, #143e79);
+			background: -o-linear-gradient(top, #143e79, #143e79);
 			overflow: hidden;
 		}
