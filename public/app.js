@@ -1,12 +1,5 @@
 (function() {
 
-    function getURLParam(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    };
-
 	var ns = Q.use("bag");
 
 	var game = window.game = ns.game = {
