@@ -341,7 +341,7 @@
 			openBtn.x = this.width * 0.2;
 			openBtn.y = this.height * 0.499;
 			openBtn.on(game.EVENTS.TAP, function(e) {
-				game.displayPage4();
+				game.displayPage5();
 			});
 
 			this.openBtn = openBtn;
@@ -375,7 +375,7 @@
 			reserveBtn.x = this.width * 0.18;
 			reserveBtn.y = this.height * 0.568;
 			reserveBtn.on(game.EVENTS.TAP, function(e) {
-				game.displayPage7();
+				game.displayPage7('gold');
 			});
 
 			this.reserveBtn = reserveBtn;
@@ -429,9 +429,10 @@
 			openBtn2.height = 79;
 			openBtn2.scaleX = this.silverPrizePage.scaleX;
 			openBtn2.scaleY = this.silverPrizePage.scaleY;
-			openBtn2.x = this.width * 0.2;
-			openBtn2.y = this.height * 0.499;
+			openBtn2.x = this.width * 0.176;
+			openBtn2.y = this.height * 0.57;
 			openBtn2.on(game.EVENTS.TAP, function(e) {
+				game.displayPage7('silver');
 			});
 
 			this.openBtn2 = openBtn2;
@@ -461,7 +462,7 @@
 
 	game.displayPage7 = function(bag) {	
 		if(this.cityPage == null) {
-			this.cityPage = buildBackground("cityPage", "page7");
+			this.cityPage = buildBackground("cityPage", bag === 'gold' ? "page7" : "page72");
 
 			var queryBtn = new Q.Button({id:"queryBtn", image: ns.R.getImage("button")});
 			queryBtn.setUpState({rect:[0,0,390,79]});
@@ -478,7 +479,7 @@
 			this.queryBtn = queryBtn;
 
 			var stateText = new Q.Text({id: "stateText"});
-			stateText.width = 220;
+			stateText.width = 255;
 			stateText.height = 52;
 			stateText.scaleX = this.cityPage.scaleX;
 			stateText.scaleY = this.cityPage.scaleY;
@@ -490,13 +491,15 @@
 			stateText.text = "省份";
 			stateText.font = "35px 黑体";
 			stateText.on(game.EVENTS.TAP, function(e) {
-				console.log(1);
+				ns.city.selectState(function(state) {
+					stateText.text = state;
+				});
 			});
 
 			this.stateText = stateText;
 
 			var cityText = new Q.Text({id: "cityText"});
-			cityText.width = 220;
+			cityText.width = 255;
 			cityText.height = 52;
 			cityText.scaleX = this.cityPage.scaleX;
 			cityText.scaleY = this.cityPage.scaleY;
@@ -508,7 +511,9 @@
 			cityText.text = "城市";
 			cityText.font = "35px 黑体";
 			cityText.on(game.EVENTS.TAP, function(e) {
-				console.log(1);
+				ns.city.selectCity(function(city) {
+					cityText.text = city;
+				});
 			});
 
 			this.cityText = cityText;
