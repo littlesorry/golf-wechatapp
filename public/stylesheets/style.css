@@ -1,24 +1,44 @@
-		body, div, canvas
-		{
-			image-rendering: optimizeSpeed;
-			-webkit-image-rendering: optimizeSpeed;
-			-webkit-interpolation-mode: nearest-neighbor;
-		}
+body, div, canvas
+{
+	image-rendering: optimizeSpeed;
+	-webkit-image-rendering: optimizeSpeed;
+	-webkit-interpolation-mode: nearest-neighbor;
+}
 
-		body {
-			overflow: hidden;
-		}
+body {
+	overflow: hidden;
+}
 
-		body{padding:0; margin:0;font-size:12px;background-color:#143e79;}
-		body, html{height: 100%;}
-		#outer{height:100%; overflow:hidden; position:relative; width:100%;}
-		#outer[id]{display:table; position:static;}
-		#middle{position:absolute; top:50%;} /* for ie only*/
-		#middle[id]{display:table-cell; vertical-align:middle; position:static;}
+body{padding:0; margin:0;font-size:12px;background-color:#143e79;}
+body, html{height: 100%;}
+#outer{height:100%; overflow:hidden; position:relative; width:100%;}
+#outer[id]{display:table; position:static;}
+#middle{position:absolute; top:50%;} /* for ie only*/
+#middle[id]{display:table-cell; vertical-align:middle; position:static;}
 
-		#container {
-			background: -moz-linear-gradient(top, #143e79, #143e79);
-			background: -webkit-linear-gradient(top, #143e79, #143e79);
-			background: -o-linear-gradient(top, #143e79, #143e79);
-			overflow: hidden;
-		}
+#container {
+	background: -moz-linear-gradient(top, #143e79, #143e79);
+	background: -webkit-linear-gradient(top, #143e79, #143e79);
+	background: -o-linear-gradient(top, #143e79, #143e79);
+	overflow: hidden;
+}
+
+.panel {
+	position: absolute;
+	z-index: 9999;
+	width: 90%;
+	height: 80%;
+	top: 8%;
+	right: 5%;
+	background: #999;
+}
+
+.panel ul {
+	font: "20px 黑体";
+	list-style: none;
+}
+
+
+.panel ul li {
+	padding: 5px 0;
+}
