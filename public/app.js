@@ -293,6 +293,22 @@
 				}
 			});
     	$("body").prepend(ageInput);
+
+    	ns.history.push("displayPage1", "#displayPage1");
+	};
+
+	game.displayPage1.render = function() {
+
+	};
+
+	game.displayPage1.cleanup = function() {
+		$("#ageInput").remove();
+		game.stage.removeChild(game.playBtn);
+		game.stage.removeChild(game.yesBox);
+		game.stage.removeChild(game.noBox);
+		game.stage.removeChild(game.yesBtn);
+		game.stage.removeChild(game.noBtn);
+		game.stage.removeChild(game.startPage);
 	};
 
 	game.displayPage2 = function() {	
