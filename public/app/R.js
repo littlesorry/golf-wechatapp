@@ -12,6 +12,7 @@
 		{id: "pickBagRed2", width: 66, src: "assets/02_bag_4.png"},
 		{id: "pickedRed", width: 66, src: "assets/03_bag_red.png"},
 		{id: "pickedBlue", width: 66, src: "assets/03_bag_blue.png"},
+		{id: "page0", width: 640, src: "assets/0-01.jpg"},
 		{id: "page1", width: 640, src: "assets/1-01.jpg"},
 		{id: "page2", width: 640, src: "assets/2-01_bg.jpg"},
 		{id: "page3", width: 640, src: "assets/3-01.jpg"},

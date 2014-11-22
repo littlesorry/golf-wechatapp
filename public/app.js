@@ -100,11 +100,7 @@
 
 		em.registerStage(this.stage, this.events);
 		
-		if (game.params.refers > 0) {
-			this.displayPage4();
-		} else {
-			this.displayPage1();
-		}
+		this.displayPage0();
 	};
 
 	game.update = function(timeInfo) {
@@ -122,31 +118,44 @@
 		}
 	}
 
-	game.displayPage1 = function() {	
-		if(this.startPage == null) {
-			this.startPage = buildBackground("startPage", "page1");
+	game.displayPage0 = function() {	
+		if(this.initPage == null) {
+			this.initPage = buildBackground("initPage", "page0");
 
-			var playBtn = new Q.Button({id:"playBtn", image: ns.R.getImage("button")});
-			playBtn.setUpState({rect:[0,0,390,79]});
-			playBtn.width= 390;
-			playBtn.height = 79;
-			playBtn.scaleX = this.startPage.scaleX;
-			playBtn.scaleY = this.startPage.scaleY;
-			playBtn.x = this.width * 0.2;
-			playBtn.y = this.height * 0.8;
-			playBtn.on(game.EVENTS.TAP, function(e) {
-				$("#ageInput").hide();
-				game.displayPage2();
+			var chooseBtn = new Q.Button({id:"chooseBtn", image: ns.R.getImage("button")});
+			chooseBtn.setUpState({rect:[0,0,450,79]});
+			chooseBtn.width= 450;
+			chooseBtn.height = 79;
+			chooseBtn.scaleX = this.initPage.scaleX;
+			chooseBtn.scaleY = this.initPage.scaleY;
+			chooseBtn.x = this.width * 0.145;
+			chooseBtn.y = this.height * 0.658;
+			chooseBtn.on(game.EVENTS.TAP, function(e) {
+				game.displayPage1();
 			});
 
-			this.playBtn = playBtn;
+			this.chooseBtn = chooseBtn;
+
+			var exchangeBtn = new Q.Button({id:"exchangeBtn", image: ns.R.getImage("button")});
+			exchangeBtn.setUpState({rect:[0,0,450,79]});
+			exchangeBtn.width= 450;
+			exchangeBtn.height = 79;
+			exchangeBtn.scaleX = this.initPage.scaleX;
+			exchangeBtn.scaleY = this.initPage.scaleY;
+			exchangeBtn.x = this.width * 0.145;
+			exchangeBtn.y = this.height * 0.734;
+			exchangeBtn.on(game.EVENTS.TAP, function(e) {
+				game.displayPage1();
+			});
+
+			this.exchangeBtn = exchangeBtn;
 
 			var instructionBtn = new Q.Button({id:"instructionBtn", image: ns.R.getImage("button")});
 			instructionBtn.setUpState({rect:[0,0,310,79]});
 			instructionBtn.width= 310;
 			instructionBtn.height = 79;
-			instructionBtn.scaleX = this.startPage.scaleX;
-			instructionBtn.scaleY = this.startPage.scaleY;
+			instructionBtn.scaleX = this.initPage.scaleX;
+			instructionBtn.scaleY = this.initPage.scaleY;
 			instructionBtn.x = this.width * 0;
 			instructionBtn.y = this.height * 0.93;
 			instructionBtn.on(game.EVENTS.TAP, function(e) {
@@ -159,8 +168,8 @@
 			baglistBtn.setUpState({rect:[0,0,310,79]});
 			baglistBtn.width= 310;
 			baglistBtn.height = 79;
-			baglistBtn.scaleX = this.startPage.scaleX;
-			baglistBtn.scaleY = this.startPage.scaleY;
+			baglistBtn.scaleX = this.initPage.scaleX;
+			baglistBtn.scaleY = this.initPage.scaleY;
 			baglistBtn.x = this.width * 0.5;
 			baglistBtn.y = this.height * 0.93;
 			baglistBtn.on(game.EVENTS.TAP, function(e) {
@@ -168,6 +177,36 @@
 			});
 
 			this.baglistBtn = baglistBtn;
+
+		}
+		
+		this.stage.addChild(
+					this.initPage
+					, this.chooseBtn
+					, this.exchangeBtn
+					, this.instructionBtn
+					, this.baglistBtn);
+		this.stage.step();
+	};
+
+	game.displayPage1 = function() {	
+		if(this.startPage == null) {
+			this.startPage = buildBackground("startPage", "page1");
+
+			var playBtn = new Q.Button({id:"playBtn", image: ns.R.getImage("button")});
+			playBtn.setUpState({rect:[0,0,450,79]});
+			playBtn.width= 450;
+			playBtn.height = 79;
+			playBtn.scaleX = this.startPage.scaleX;
+			playBtn.scaleY = this.startPage.scaleY;
+			playBtn.x = this.width * 0.145;
+			playBtn.y = this.height * 0.806;
+			playBtn.on(game.EVENTS.TAP, function(e) {
+				$("#ageInput").hide();
+				game.displayPage2();
+			});
+
+			this.playBtn = playBtn;
 
 			var yesBox = new Q.Button({id:"yesBox", image: ns.R.getImage("checkbox")});
 			yesBox.setUpState({rect:[0,0,66,32]});
@@ -225,8 +264,6 @@
 		this.stage.addChild(
 					this.startPage
 					, this.playBtn
-					, this.instructionBtn
-					, this.baglistBtn
 					, this.yesBox
 					, this.noBox
 					, this.yesBtn
