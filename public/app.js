@@ -378,7 +378,7 @@
 			openBtn.x = this.width * 0.2;
 			openBtn.y = this.height * 0.499;
 			openBtn.on(game.EVENTS.TAP, function(e) {
-				game.displayPage5();
+				game.displayPage4();
 			});
 
 			this.openBtn = openBtn;
@@ -497,9 +497,16 @@
 		this.stage.step();
 	};
 
+	function pickPage(bag, data) {
+		var pageSrc = bag === 'gold' ? "page71" : "page72"
+		pageSrc += data ? "2" : "";
+
+		return pageSrc;
+	}
+
 	game.displayPage7 = function(bag) {	
 		if(this.cityPage == null) {
-			this.cityPage = buildBackground("cityPage", bag === 'gold' ? "page7" : "page72");
+			this.cityPage = buildBackground("cityPage", pickPage(bag));
 
 			var queryBtn = new Q.Button({id:"queryBtn", image: ns.R.getImage("button")});
 			queryBtn.setUpState({rect:[0,0,390,79]});
@@ -510,7 +517,7 @@
 			queryBtn.x = this.width * 0.2;
 			queryBtn.y = this.height * 0.39;
 			queryBtn.on(game.EVENTS.TAP, function(e) {
-
+				game.displayPage7Result(bag, {});
 			});
 
 			this.queryBtn = queryBtn;
@@ -561,6 +568,119 @@
 					, this.stateText
 					, this.cityText
 					, this.queryBtn);
+		this.stage.step();
+	};
+
+	var shopTexts = [];
+	game.updateShopTexts = function(data) {
+		for (var i = shopTexts.length - 1; i >= 0; i--) {
+			// console.log(shopTexts[i].id);
+			this.stage.removeChild(shopTexts[i]);
+		}
+		shopTexts.length = 0;
+		for (var i = 0; i < data.length && i < 5; i++) {
+			var shopText = new Q.Text({id: "shopText"});
+			shopText.width = 235;
+			shopText.height = 80;
+			shopText.scaleX = this.cityResultPage.scaleX;
+			shopText.scaleY = this.cityResultPage.scaleY;
+			shopText.x = this.width * 0.075;
+			shopText.y = this.height * 0.55;
+			shopText.textAlign = "start"; 
+			shopText.lineSpacing = 30; 
+			shopText.color = "#fff";
+			shopText.text = data[i].location;
+			shopText.font = "32px 黑体";
+
+			this.stage.addChild(shopText);
+			shopTexts.push(shopText);
+
+			if (data[i].remaining) {
+				var remainingText = new Q.Text({id: "remainingText"});
+				remainingText.width = 300;
+				remainingText.height = 52;
+				remainingText.scaleX = this.cityResultPage.scaleX;
+				remainingText.scaleY = this.cityResultPage.scaleY;
+				remainingText.x = this.width * 0.45;
+				remainingText.y = this.height * 0.58;
+				remainingText.textAlign = "start"; 
+				remainingText.lineSpacing = 35; 
+				remainingText.color = "#fff";
+				remainingText.text = data[i].remaining;
+				remainingText.font = "35px 黑体";
+
+				this.stage.addChild(remainingText);
+				shopTexts.push(remainingText);
+			}
+		}
+	};
+
+	game.displayPage7Result = function(bag, data) {
+		if(this.cityResultPage == null) {
+			this.cityResultPage = buildBackground("cityResultPage", pickPage(bag, data));
+
+			var resultQueryBtn = new Q.Button({id:"resultQueryBtn", image: ns.R.getImage("button")});
+			resultQueryBtn.setUpState({rect:[0,0,390,79]});
+			resultQueryBtn.width= 390;
+			resultQueryBtn.height = 79;
+			resultQueryBtn.scaleX = this.cityResultPage.scaleX;
+			resultQueryBtn.scaleY = this.cityResultPage.scaleY;
+			resultQueryBtn.x = this.width * 0.2;
+			resultQueryBtn.y = this.height * 0.39;
+			resultQueryBtn.on(game.EVENTS.TAP, function(e) {
+				// TODO:
+				game.displayPage7Result(bag, [{location: "XXXXXX市某某路", remaining: 1}]);
+			});
+
+			this.resultQueryBtn = resultQueryBtn;
+
+			var stateResultText = new Q.Text({id: "stateResultText"});
+			stateResultText.width = 255;
+			stateResultText.height = 52;
+			stateResultText.scaleX = this.cityResultPage.scaleX;
+			stateResultText.scaleY = this.cityResultPage.scaleY;
+			stateResultText.x = this.width * 0.075;
+			stateResultText.y = this.height * 0.315;
+			stateResultText.textAlign = "start"; 
+			stateResultText.lineSpacing = 35; 
+			stateResultText.color = "#fff";
+			stateResultText.text = "省份";
+			stateResultText.font = "35px 黑体";
+			stateResultText.on(game.EVENTS.TAP, function(e) {
+				ns.city.selectState(function(state) {
+					stateResultText.text = state;
+				});
+			});
+
+			this.stateResultText = stateResultText;
+
+			var cityResultText = new Q.Text({id: "cityResultText"});
+			cityResultText.width = 255;
+			cityResultText.height = 52;
+			cityResultText.scaleX = this.cityResultPage.scaleX;
+			cityResultText.scaleY = this.cityResultPage.scaleY;
+			cityResultText.x = this.width * 0.535;
+			cityResultText.y = this.height * 0.315;
+			cityResultText.textAlign = "start"; 
+			cityResultText.lineSpacing = 35; 
+			cityResultText.color = "#fff";
+			cityResultText.text = "城市";
+			cityResultText.font = "35px 黑体";
+			cityResultText.on(game.EVENTS.TAP, function(e) {
+				ns.city.selectCity(function(city) {
+					cityResultText.text = city;
+				});
+			});
+
+			this.cityResultText = cityResultText;
+		}
+
+		this.stage.addChild(
+					this.cityResultPage
+					, this.stateResultText
+					, this.cityResultText
+					, this.resultQueryBtn);
+		this.updateShopTexts(data);
 		this.stage.step();
 	};
 
