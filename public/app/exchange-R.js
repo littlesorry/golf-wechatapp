@@ -12,16 +12,10 @@
 		{id: "pickBagRed2", width: 66, src: "assets/02_bag_4.png"},
 		{id: "pickedRed", width: 66, src: "assets/03_bag_red.png"},
 		{id: "pickedBlue", width: 66, src: "assets/03_bag_blue.png"},
-		{id: "page0", width: 640, src: "assets/0-01.jpg"},
-		{id: "page1", width: 640, src: "assets/1-01.jpg"},
-		{id: "page2", width: 640, src: "assets/2-01_bg.jpg"},
-		{id: "page3", width: 640, src: "assets/3-01.jpg"},
-		{id: "page4", width: 640, src: "assets/4-01.jpg"},
-		{id: "page5", width: 640, src: "assets/5-01.jpg"},
-		{id: "page71", width: 640, src: "assets/7-01.jpg"},
-		{id: "page72", width: 640, src: "assets/7-02.jpg"},
-		{id: "page712", width: 640, src: "assets/7-012.jpg"},
-		{id: "page722", width: 640, src: "assets/7-022.jpg"}
+		{id: "page16", width: 640, src: "assets/16-01.jpg"},
+		{id: "page17", width: 640, src: "assets/17-01.jpg"},
+		{id: "page17_2", width: 640, src: "assets/17-02.jpg"},
+		{id: "page18", width: 640, src: "assets/18-01.jpg"}
 	];
 
 	R.backgroundAssets = [

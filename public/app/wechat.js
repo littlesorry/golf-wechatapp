@@ -3,8 +3,8 @@
 
 	var wechat = ns.wechat = {};
 
-    var imgUrl = "http://www.autobund.com.cn:9000/assets/icon.png";
-    var shareLink = "http://www.autobund.com.cn:9000/enter/";
+    var imgUrl = "http://wxkf.gofaner.com:9000/assets/icon.png";
+    var shareLink = "http://wxkf.gofaner.com:9000/enter/";
 
 	var descContent = "";
 
