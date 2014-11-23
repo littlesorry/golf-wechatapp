@@ -32,7 +32,7 @@
 		div.style.left = "0px";
 		div.style.top = (container.clientHeight >> 1) + "px";
 		div.style.textAlign = "center";
-		div.style.color = "#333";
+		div.style.color = "#fefefe";
 		div.style.font = Q.isMobile ?  'bold 16px 黑体' : 'bold 16px 黑体';
 		div.style.textShadow = Q.isAndroid ? "0 2px 2px #111" : "0 2px 2px #ccc";
 		container.appendChild(div);
