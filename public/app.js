@@ -298,11 +298,11 @@
 	};
 
 	game.displayPage1.render = function() {
-
+		$("#ageInput").show();
 	};
 
 	game.displayPage1.cleanup = function() {
-		$("#ageInput").remove();
+		$("#ageInput").hide();
 		game.stage.removeChild(game.playBtn);
 		game.stage.removeChild(game.yesBox);
 		game.stage.removeChild(game.noBox);
@@ -379,6 +379,20 @@
 					, this.pickBtnBlue1
 					, this.pickBtnBlue2);
 		this.stage.step();
+
+		ns.history.push("displayPage2", "#displayPage2");
+	};
+
+	game.displayPage2.render = function() {
+
+	};
+
+	game.displayPage2.cleanup = function() {
+		game.stage.removeChild(game.pickPage);
+		game.stage.removeChild(game.pickBtnRed1);
+		game.stage.removeChild(game.pickBtnRed2);
+		game.stage.removeChild(game.pickBtnBlue1);
+		game.stage.removeChild(game.pickBtnBlue2);
 	};
 
 	game.displayPage3 = function(bag) {	
@@ -398,21 +412,33 @@
 			});
 
 			this.openBtn = openBtn;
-
-			var pickedBag = new Q.Bitmap({"id": "pickedBag", "image": ns.R.getImage(bag === 'red'? 'pickedRed' : 'pickedBlue')});
-	        pickedBag.scaleX = this.openPage.scaleX;
-	        pickedBag.scaleY = this.openPage.scaleY;
-	        pickedBag.x = this.width * 0.25;
-	        pickedBag.y = this.height * 0.17;
-
-	        this.pickedBag = pickedBag;
 		}
+
+		var pickedBag = new Q.Bitmap({"id": "pickedBag", "image": ns.R.getImage(bag === 'red'? 'pickedRed' : 'pickedBlue')});
+        pickedBag.scaleX = this.openPage.scaleX;
+        pickedBag.scaleY = this.openPage.scaleY;
+        pickedBag.x = this.width * 0.25;
+        pickedBag.y = this.height * 0.17;
+
+        this.pickedBag = pickedBag;
 		
 		this.stage.addChild(
 					this.openPage
 					, this.pickedBag
 					, this.openBtn);
 		this.stage.step();
+
+		ns.history.push("displayPage3", "#displayPage3");
+	};
+
+	game.displayPage3.render = function() {
+
+	};
+
+	game.displayPage3.cleanup = function() {
+		game.stage.removeChild(game.openPage);
+		game.stage.removeChild(game.pickedBag);
+		game.stage.removeChild(game.openBtn);
 	};
 
 	game.displayPage4 = function() {	
@@ -470,6 +496,19 @@
 					, this.couponCode
 					, this.reserveBtn);
 		this.stage.step();
+
+		ns.history.push("displayPage4", "#displayPage4");
+	};
+
+	game.displayPage4.render = function() {
+
+	};
+
+	game.displayPage4.cleanup = function() {
+		game.stage.removeChild(game.goldPrizePage);
+		game.stage.removeChild(game.bagCode);
+		game.stage.removeChild(game.couponCode);
+		game.stage.removeChild(game.reserveBtn);
 	};
 
 	game.displayPage5 = function() {	
@@ -511,6 +550,18 @@
 					, this.silverCode
 					, this.openBtn2);
 		this.stage.step();
+
+		ns.history.push("displayPage5", "#displayPage5");
+	};
+
+	game.displayPage5.render = function() {
+
+	};
+
+	game.displayPage5.cleanup = function() {
+		game.stage.removeChild(game.silverPrizePage);
+		game.stage.removeChild(game.silverCode);
+		game.stage.removeChild(game.openBtn2);
 	};
 
 	function pickPage(bag, data) {

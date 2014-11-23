@@ -15,6 +15,6 @@
 		ns.game[last] && typeof ns.game[last].cleanup === 'function' && ns.game[last].cleanup.call();
 
 		var current = event.state;
-		current && typeof current.render === 'function' && current.render.call();
+		ns.game[current] && typeof ns.game[current].render === 'function' && ns.game[current].render.call();
 	};
 })();
