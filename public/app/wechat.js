@@ -3,8 +3,8 @@
 
 	var wechat = ns.wechat = {};
 
-    var imgUrl = "http://wxkf.gofaner.com:9000/assets/icon.png";
-    var shareLink = "http://wxkf.gofaner.com:9000/enter/";
+    var imgUrl = "http://wxkf.gofaner.com/assets/icon.png";
+    var shareLink = "http://wxkf.gofaner.com/enter/";
 
 	var descContent = "";
 

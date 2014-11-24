@@ -21,9 +21,11 @@
 		<script type="text/javascript" src="libs/jquery-1.11.1.min.js"></script>
 		<script type="text/javascript">
 		$(function() {
-			$("body").click(function() {
-				window.location = 'index.html';
-			});
+			setTimeout(function() {
+				$("body").click(function() {
+					window.location = 'index.html';
+				});
+			}, 3000);
 		});
 		</script>
 	</head>
