@@ -145,7 +145,7 @@
 			exchangeBtn.x = this.width * 0.145;
 			exchangeBtn.y = this.height * 0.734;
 			exchangeBtn.on(game.EVENTS.TAP, function(e) {
-				game.displayPage1();
+				window.location = 'exchange.html';
 			});
 
 			this.exchangeBtn = exchangeBtn;
