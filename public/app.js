@@ -294,9 +294,13 @@
 						"letter-spacing": "4px"
 					}
 			});
-    		$("body").prepend(ageInput);
+			setTimeout(function() {
+    			$("body").prepend(ageInput);
+			}, 500);
 		} else {
-			$("#ageInput").show();
+			setTimeout(function() {
+				$("#ageInput").show();
+			}, 500);
 		}
 
     	ns.history.push("displayPage1", "#displayPage1");
