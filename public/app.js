@@ -283,7 +283,7 @@
 						top : (game.height * 0.678) + "px",
 						left: (game.width * 0.573) + "px",
 						width: (game.width * 0.183)+ "px",
-						height: game.height * 0.03 + "px",
+						height: (game.height * 0.03) + "px",
 						background: "transparent",
 						border: "none",
 						"text-align": "right",
