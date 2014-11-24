@@ -6,6 +6,7 @@
 	};
 
 	history.push = function(state, url) {
+		return;
 		if (history.states[history.states.length - 1] !== state) {
 			window.history.pushState(state, "", url);
 			this.states.push(state);
