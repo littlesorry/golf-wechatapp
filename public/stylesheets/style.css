@@ -41,8 +41,7 @@ body, html{height: 100%;}
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	width: 100%;
-	height: 100%;
+	height: 0;
 	overflow: visible;
 }
 
@@ -53,6 +52,10 @@ body, html{height: 100%;}
 }
 
 .panel li {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
 	border-bottom: 2px solid #eaeaea;
 	background: cyan;
 }
