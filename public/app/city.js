@@ -45,13 +45,13 @@
 
 	var events = Q.supportTouch ? ["touchstart", "touchmove", "touchend"] : ["mousedown", "mousemove", "mouseup"];
 
-	var panelTpl = "<div id='panel' class='panel animated zoomIn'><ul>"
+	var panelTpl = "<div id='panel' class='panel animated zoomIn'>"
 					+ "{{#each items}}"
-					+ "<li><a>"
+					+ "<div class='item'><a>"
 					+ "{{name}}"
-					+ "</a></li>"
+					+ "</a></div>"
 					+ "{{/each}}"
-					+ "</ul></div>";
+					+ "</div>";
 	var template = Handlebars.compile(panelTpl);
 
 	var displayPanel = function(items, callback) {
