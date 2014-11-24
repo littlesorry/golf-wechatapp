@@ -33,7 +33,6 @@ body, html{height: 100%;}
 	z-index: 9999;
 	overflow: scroll;
 	-webkit-overflow-scrolling: touch;
-	background: yellow;
 }
 
 .panel ul {
@@ -45,19 +44,13 @@ body, html{height: 100%;}
 	overflow: visible;
 }
 
-.panel ul:after { /* 5 */
-  content: '';
-  display: inline-block;
-  width: 100%;
-}
-
 .panel li {
 	position: relative;
 	left: 0;
 	top: 0;
 	width: 100%;
 	border-bottom: 2px solid #eaeaea;
-	background: cyan;
+	z-index: 99999;
 }
 
 .panel li a {
