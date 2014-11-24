@@ -6,8 +6,10 @@
 	};
 
 	history.push = function(state, url) {
-		window.history.pushState(state, "", url);
-		this.states.push(state);
+		if (history.states[history.states.length - 1] !== state) {
+			window.history.pushState(state, "", url);
+			this.states.push(state);
+		}
 	};
 
 	window.onpopstate = function(event) {
@@ -15,6 +17,6 @@
 		ns.game[last] && typeof ns.game[last].cleanup === 'function' && ns.game[last].cleanup.call();
 
 		var current = event.state;
-		ns.game[current] && typeof ns.game[current].render === 'function' && ns.game[current].render.call();
+		typeof ns.game[current] === 'function' && ns.game[current].apply(ns.game);
 	};
 })();

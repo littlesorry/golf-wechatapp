@@ -118,33 +118,6 @@
 			exchangeBtn.scaleX = this.exchangePage.scaleX;
 			exchangeBtn.scaleY = this.exchangePage.scaleY;
 			exchangeBtn.x = this.width * 0.145;
-			exchangeBtn.y = this.height * 0.734;
-			exchangeBtn.on(game.EVENTS.TAP, function(e) {
-				// TODO
-				game.displayPage17();
-			});
-
-			this.exchangeBtn = exchangeBtn;
-		}
-		
-		this.stage.addChild(
-					this.exchangePage
-					, this.exchangeBtn);
-
-		this.stage.step();
-	};
-
-	game.displayPage16 = function() {	
-		if(this.exchangePage == null) {
-			this.exchangePage = buildBackground("exchangePage", "page16");
-
-			var exchangeBtn = new Q.Button({id:"exchangeBtn", image: ns.R.getImage("button")});
-			exchangeBtn.setUpState({rect:[0,0,450,79]});
-			exchangeBtn.width= 450;
-			exchangeBtn.height = 79;
-			exchangeBtn.scaleX = this.exchangePage.scaleX;
-			exchangeBtn.scaleY = this.exchangePage.scaleY;
-			exchangeBtn.x = this.width * 0.145;
 			exchangeBtn.y = this.height * 0.7;
 			exchangeBtn.on(game.EVENTS.TAP, function(e) {
 				// TODO
@@ -159,6 +132,7 @@
 					, this.exchangeBtn);
 
 		this.stage.step();
+		ns.history.push("displayPage16", "#displayPage16");
 	};
 
 	game.displayPage17 = function() {
@@ -185,6 +159,7 @@
 					, this.goBtn);
 
 		this.stage.step();
+		ns.history.push("displayPage17", "#displayPage17");
 	};
 
 	game.displayPage18 = function() {
@@ -211,6 +186,7 @@
 					, this.submitBtn);
 
 		this.stage.step();
+		ns.history.push("displayPage18", "#displayPage18");
 	};
 
 	$(function() {

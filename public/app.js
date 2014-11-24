@@ -187,6 +187,7 @@
 					, this.instructionBtn
 					, this.baglistBtn);
 		this.stage.step();
+    	ns.history.push("displayPage0", "#displayPage0");
 	};
 
 	game.displayPage1 = function() {	
@@ -271,44 +272,38 @@
 		updateCheckbox();
 		this.stage.step();
 
-	    var ageInput = Q.createDOM("input"
-			, {
-				id:"ageInput"
-				, type: "number"
-				, maxlength: 3
-				, style : {
-					position:"absolute",
-					top : (game.height * 0.678) + "px",
-					left: (game.width * 0.573) + "px",
-					width: (game.width * 0.19)+ "px",
-					height: game.height * 0.03 + "px",
-					background: "transparent",
-					border: "none",
-					"text-align": "right",
-					"padding-right": "4px",
-					"color": "#333",
-					"z-index": 9999,
-					"font-size": "20px",
-					"letter-spacing": "4px"
-				}
+		if ($("#ageInput").size() < 1) {
+		    var ageInput = Q.createDOM("input"
+				, {
+					id:"ageInput"
+					, type: "number"
+					, maxlength: 3
+					, style : {
+						position:"absolute",
+						top : (game.height * 0.678) + "px",
+						left: (game.width * 0.573) + "px",
+						width: (game.width * 0.183)+ "px",
+						height: game.height * 0.03 + "px",
+						background: "transparent",
+						border: "none",
+						"text-align": "right",
+						"padding-right": "4px",
+						"color": "#333",
+						"z-index": 9999,
+						"font-size": "20px",
+						"letter-spacing": "4px"
+					}
 			});
-    	$("body").prepend(ageInput);
+    		$("body").prepend(ageInput);
+		} else {
+			$("#ageInput").show();
+		}
 
     	ns.history.push("displayPage1", "#displayPage1");
 	};
 
-	game.displayPage1.render = function() {
-		$("#ageInput").show();
-	};
-
 	game.displayPage1.cleanup = function() {
 		$("#ageInput").hide();
-		game.stage.removeChild(game.playBtn);
-		game.stage.removeChild(game.yesBox);
-		game.stage.removeChild(game.noBox);
-		game.stage.removeChild(game.yesBtn);
-		game.stage.removeChild(game.noBtn);
-		game.stage.removeChild(game.startPage);
 	};
 
 	game.displayPage2 = function() {	
@@ -383,18 +378,6 @@
 		ns.history.push("displayPage2", "#displayPage2");
 	};
 
-	game.displayPage2.render = function() {
-
-	};
-
-	game.displayPage2.cleanup = function() {
-		game.stage.removeChild(game.pickPage);
-		game.stage.removeChild(game.pickBtnRed1);
-		game.stage.removeChild(game.pickBtnRed2);
-		game.stage.removeChild(game.pickBtnBlue1);
-		game.stage.removeChild(game.pickBtnBlue2);
-	};
-
 	game.displayPage3 = function(bag) {	
 		if(this.openPage == null) {
 			this.openPage = buildBackground("openPage", "page3");
@@ -429,16 +412,6 @@
 		this.stage.step();
 
 		ns.history.push("displayPage3", "#displayPage3");
-	};
-
-	game.displayPage3.render = function() {
-
-	};
-
-	game.displayPage3.cleanup = function() {
-		game.stage.removeChild(game.openPage);
-		game.stage.removeChild(game.pickedBag);
-		game.stage.removeChild(game.openBtn);
 	};
 
 	game.displayPage4 = function() {	
@@ -496,19 +469,7 @@
 					, this.couponCode
 					, this.reserveBtn);
 		this.stage.step();
-
 		ns.history.push("displayPage4", "#displayPage4");
-	};
-
-	game.displayPage4.render = function() {
-
-	};
-
-	game.displayPage4.cleanup = function() {
-		game.stage.removeChild(game.goldPrizePage);
-		game.stage.removeChild(game.bagCode);
-		game.stage.removeChild(game.couponCode);
-		game.stage.removeChild(game.reserveBtn);
 	};
 
 	game.displayPage5 = function() {	
@@ -552,16 +513,6 @@
 		this.stage.step();
 
 		ns.history.push("displayPage5", "#displayPage5");
-	};
-
-	game.displayPage5.render = function() {
-
-	};
-
-	game.displayPage5.cleanup = function() {
-		game.stage.removeChild(game.silverPrizePage);
-		game.stage.removeChild(game.silverCode);
-		game.stage.removeChild(game.openBtn2);
 	};
 
 	function pickPage(bag, data) {
@@ -636,6 +587,8 @@
 					, this.cityText
 					, this.queryBtn);
 		this.stage.step();
+
+		ns.history.push("displayPage7", "#displayPage7");
 	};
 
 	var shopTexts = [];
@@ -749,6 +702,7 @@
 					, this.resultQueryBtn);
 		this.updateShopTexts(data);
 		this.stage.step();
+		ns.history.push("displayPage7Result", "#displayPage7Result");
 	};
 
 	$(function() {
