@@ -1,0 +1,35 @@
+{
+    "app": {
+        "wechatRequired": true,
+        "runtime": {
+            "port": 80
+        },
+        "integration": {
+            "wechatAppId": "wx770d10bc9719912f",
+            "wechatAppScret": "1327911330e014bcfed634ed419a2c0b",
+            "wechatCallbackURL": "http://www.autobund.com.cn/wechat",
+            "wechatOAuthURL": "https://open.weixin.qq.com/connect/oauth2/authorize?appid={{encode appId}}&redirect_uri={{encode callbackURL}}&response_type=code&scope=snsapi_login&state={{encode state}}#wechat_redirect",
+            "wechatAccessTokenURL": "https://api.weixin.qq.com/sns/oauth2/access_token?appid={{encode appId}}&secret={{encode secret}}&code={{encode code}}&grant_type=authorization_code"
+        }
+    },
+    "data": {
+        "db": {
+            "url": "mongodb://localhost/jgch"
+        },
+        "models": {
+            "user": {
+                "openId": "String", 
+                "createTime": "Date"
+            },
+            "refer": {
+                "sourceOpenId": "String",
+                "targetOpenId": "String", 
+                "createTime": "Date"
+            },
+            "exchange": {
+                "openId": "String",
+                "memberId": "String"
+            }
+        }
+    }
+}
