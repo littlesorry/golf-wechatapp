@@ -289,11 +289,11 @@
 						background: "transparent",
 						border: "none",
 						"text-align": "right",
-						"padding-right": "4px",
+						"padding-right": "8px",
 						"color": "#333",
 						"z-index": 9999,
-						"font-size": "20px",
-						"letter-spacing": "4px"
+						"font-size": "18px",
+						"letter-spacing": "3px"
 					}
 			});
 			setTimeout(function() {

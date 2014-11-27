@@ -5,16 +5,16 @@
             "port": 80
         },
         "integration": {
-            "wechatAppId": "wx770d10bc9719912f",
-            "wechatAppScret": "1327911330e014bcfed634ed419a2c0b",
-            "wechatCallbackURL": "http://www.autobund.com.cn/wechat",
+            "wechatAppId": "wx36b4959dcf0a1af9",
+            "wechatAppScret": "33230a6c1841999533a7c0409c95a234",
+            "wechatCallbackURL": "http://wxkf.gofaner.com/wechat",
             "wechatOAuthURL": "https://open.weixin.qq.com/connect/oauth2/authorize?appid={{encode appId}}&redirect_uri={{encode callbackURL}}&response_type=code&scope=snsapi_login&state={{encode state}}#wechat_redirect",
             "wechatAccessTokenURL": "https://api.weixin.qq.com/sns/oauth2/access_token?appid={{encode appId}}&secret={{encode secret}}&code={{encode code}}&grant_type=authorization_code"
         }
     },
     "data": {
         "db": {
-            "url": "mongodb://localhost/jgch"
+            "url": "mongodb://localhost/golf"
         },
         "models": {
             "user": {
