@@ -9,7 +9,9 @@
 		state: "not_completed",
 		data: {
 			isMember: true
-		}
+		},
+		selectedState: "省份",
+		selectedCity: "城市"
 	};
 
 	function buildBackground(id, imageId) {
@@ -418,7 +420,8 @@
 		ns.history.push("displayPage3", "#displayPage3");
 	};
 
-	game.displayPage4 = function() {	
+	game.displayPage4 = function() {
+		game.state = "gold";
 		if(this.goldPrizePage == null) {
 			this.goldPrizePage = buildBackground("goldPrizePage", "page4");
 
@@ -476,7 +479,8 @@
 		ns.history.push("displayPage4", "#displayPage4");
 	};
 
-	game.displayPage5 = function() {	
+	game.displayPage5 = function() {
+		game.state = "silver";
 		if(this.silverPrizePage == null) {
 			this.silverPrizePage = buildBackground("silverPrizePage", "page5");
 
@@ -519,6 +523,11 @@
 		ns.history.push("displayPage5", "#displayPage5");
 	};
 
+	function pickPrePage(bag) {
+		var pageSrc = bag === 'gold' ? "page71" : "page72"
+		return pageSrc;
+	}
+
 	function pickPage(bag, data) {
 		var pageSrc = bag === 'gold' ? "page71" : "page72"
 		pageSrc += data ? "2" : "";
@@ -528,7 +537,7 @@
 
 	game.displayPage7 = function(bag) {	
 		if(this.cityPage == null) {
-			this.cityPage = buildBackground("cityPage", pickPage(bag));
+			this.cityPage = buildBackground("cityPage", pickPrePage(bag));
 
 			var queryBtn = new Q.Button({id:"queryBtn", image: ns.R.getImage("button")});
 			queryBtn.setUpState({rect:[0,0,390,79]});
@@ -559,6 +568,8 @@
 			stateText.on(game.EVENTS.TAP, function(e) {
 				ns.city.selectState(function(state) {
 					stateText.text = state;
+					game.selectedState = state;
+					cityText.text = "城市";
 				});
 			});
 
@@ -579,6 +590,7 @@
 			cityText.on(game.EVENTS.TAP, function(e) {
 				ns.city.selectCity(function(city) {
 					cityText.text = city;
+					game.selectedCity = city;
 				});
 			});
 
@@ -595,50 +607,6 @@
 		ns.history.push("displayPage7", "#displayPage7");
 	};
 
-	var shopTexts = [];
-	game.updateShopTexts = function(data) {
-		for (var i = shopTexts.length - 1; i >= 0; i--) {
-			// console.log(shopTexts[i].id);
-			this.stage.removeChild(shopTexts[i]);
-		}
-		shopTexts.length = 0;
-		for (var i = 0; i < data.length && i < 5; i++) {
-			var shopText = new Q.Text({id: "shopText"});
-			shopText.width = 235;
-			shopText.height = 80;
-			shopText.scaleX = this.cityResultPage.scaleX;
-			shopText.scaleY = this.cityResultPage.scaleY;
-			shopText.x = this.width * 0.075;
-			shopText.y = this.height * 0.55;
-			shopText.textAlign = "start"; 
-			shopText.lineSpacing = 30; 
-			shopText.color = "#fff";
-			shopText.text = data[i].location;
-			shopText.font = "32px 黑体";
-
-			this.stage.addChild(shopText);
-			shopTexts.push(shopText);
-
-			if (data[i].remaining) {
-				var remainingText = new Q.Text({id: "remainingText"});
-				remainingText.width = 300;
-				remainingText.height = 52;
-				remainingText.scaleX = this.cityResultPage.scaleX;
-				remainingText.scaleY = this.cityResultPage.scaleY;
-				remainingText.x = this.width * 0.45;
-				remainingText.y = this.height * 0.58;
-				remainingText.textAlign = "start"; 
-				remainingText.lineSpacing = 35; 
-				remainingText.color = "#fff";
-				remainingText.text = data[i].remaining;
-				remainingText.font = "35px 黑体";
-
-				this.stage.addChild(remainingText);
-				shopTexts.push(remainingText);
-			}
-		}
-	};
-
 	game.displayPage7Result = function(bag, data) {
 		if(this.cityResultPage == null) {
 			this.cityResultPage = buildBackground("cityResultPage", pickPage(bag, data));
@@ -653,7 +621,7 @@
 			resultQueryBtn.y = this.height * 0.39;
 			resultQueryBtn.on(game.EVENTS.TAP, function(e) {
 				// TODO:
-				game.displayPage7Result(bag, [{location: "XXXXXX市某某路", remaining: 1}]);
+				game.displayPage7Result(bag, [{location: "XXXXXX市某某路某某路", remaining: Math.random()}, {location: "XXXXXX市某某路某某路", remaining: 1}, {location: "XXXXXX市某某路某某路", remaining: 1}, {location: "XXXXXX市某某路某某路", remaining: 1}, {location: "XXXXXX市某某路某某路", remaining: 1}]);
 			});
 
 			this.resultQueryBtn = resultQueryBtn;
@@ -668,11 +636,12 @@
 			stateResultText.textAlign = "start"; 
 			stateResultText.lineSpacing = 35; 
 			stateResultText.color = "#fff";
-			stateResultText.text = "省份";
+			stateResultText.text = game.selectedState;
 			stateResultText.font = "35px 黑体";
 			stateResultText.on(game.EVENTS.TAP, function(e) {
 				ns.city.selectState(function(state) {
 					stateResultText.text = state;
+					cityResultText.text = "城市";
 				});
 			});
 
@@ -688,7 +657,7 @@
 			cityResultText.textAlign = "start"; 
 			cityResultText.lineSpacing = 35; 
 			cityResultText.color = "#fff";
-			cityResultText.text = "城市";
+			cityResultText.text = game.selectedCity;
 			cityResultText.font = "35px 黑体";
 			cityResultText.on(game.EVENTS.TAP, function(e) {
 				ns.city.selectCity(function(city) {
@@ -704,7 +673,7 @@
 					, this.stateResultText
 					, this.cityResultText
 					, this.resultQueryBtn);
-		this.updateShopTexts(data);
+		ns.shop.renderShops(data);
 		this.stage.step();
 		ns.history.push("displayPage7Result", "#displayPage7Result");
 	};

@@ -16,20 +16,21 @@
 				"北京": [
 					"北京"
 					],
-				,"福建": [
+				"福建": [
 					"厦门"
-				,"江苏": [
+					],
+				"江苏": [
 					"常州"
 					,"南京"
 					,"苏州"
 					,"扬州"
 					,"张家港"
 					],
-				,"辽宁": [
+				"辽宁": [
 					"抚顺"
 					,"沈阳"
 					],
-				,"山东": [
+				"山东": [
 					"滨州"
 					,"德州"
 					,"东营"
@@ -46,7 +47,7 @@
 					,"烟台"
 					,"招远"
 					],
-				,"陕西": [
+				"陕西": [
 					"安康"
 					,"宝鸡"
 					,"汉中"
@@ -54,9 +55,10 @@
 					,"西安"
 					,"咸阳"
 					],
-				,"天津": [
+				"天津": [
 					"天津"
-				,"新疆": [
+					],
+				"新疆": [
 					"昌吉"
 					,"克拉玛依"
 					,"库尔勒"
@@ -64,10 +66,10 @@
 					,"乌鲁木齐"
 					,"伊宁"
 					],
-				,"浙江": [
+				"浙江": [
 					"湖州"
 					],
-				,"重庆": [
+				"重庆": [
 					"重庆"
 					]
 				};
@@ -83,8 +85,13 @@
 					+ "</div>";
 	var template = Handlebars.compile(panelTpl);
 
+	var state = null;
 	var displayPanel = function(items, callback) {
-		var panel = $(template(items))
+		if (items === undefined || items === []) {
+			return;
+		}
+
+		var panel = $(template({"items": items}))
 			.appendTo('body')
 			.on(events[2], "a", function() {
 				panel.addClass("zoomOut");
@@ -97,10 +104,13 @@
 
 	var city = ns.city = {
 		selectState: function(callback) {
-			displayPanel(states, callback);
+			displayPanel(states, function(selectedState) {
+				state = selectedState;
+				callback.apply(null, arguments);
+			});
 		},
 		selectCity: function(callback) {
-			displayPanel(cities, callback);
+			displayPanel(cities[state], callback);
 		}
 	};
 
