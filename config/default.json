@@ -31,8 +31,14 @@
                 "type": "String"
             },
             "user": {
-                "openId": "String"
+                "openId": "String",
                 "code": "String"
+            },
+            "registry": {
+                "name": "String",
+                "phone": "String",
+                "personId": "String",
+                "email": "String"
             }
         }
     }
