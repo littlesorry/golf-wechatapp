@@ -27,7 +27,12 @@
             },
             "coupon": {
                 "code": "String",
+                "bagCode": "String",
                 "type": "String"
+            },
+            "user": {
+                "openId": "String"
+                "code": "String"
             }
         }
     }
