@@ -17,18 +17,17 @@
             "url": "mongodb://localhost/golf"
         },
         "models": {
-            "user": {
-                "openId": "String", 
-                "createTime": "Date"
+            "shop": {
+                "state": "String",
+                "city": "String",
+                "code": "String",
+                "address", "String",
+                "initNumber": "Number",
+                "remaingNumber": "Number"
             },
-            "refer": {
-                "sourceOpenId": "String",
-                "targetOpenId": "String", 
-                "createTime": "Date"
-            },
-            "exchange": {
-                "openId": "String",
-                "memberId": "String"
+            "coupon": {
+                "code": "String",
+                "type": "String"
             }
         }
     }
