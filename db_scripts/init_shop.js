@@ -1,5 +1,3 @@
-use golf;
-
 db.shops.insert({state: '北京', city: '北京', code:'GBJA3', address:'北京市西城区复兴路甲23号', initNumber:90, remainingNumber: 90});
 db.shops.insert({state: '北京', city: '北京', code:'GBJA4', address:'北京市近郊昌平区立汤路186号', initNumber:90, remainingNumber: 90});
 db.shops.insert({state: '北京', city: '北京', code:'GBJA5', address:'北京昌平区昌平大街府学路甲24号', initNumber:75, remainingNumber: 75});

@@ -1,5 +1,3 @@
-use golf;
-
 db.coupons.insert({code: 'Bi5a2t', type: 'gold', status: 'unused'});
 db.coupons.insert({code: 'Bww8t3', type: 'gold', status: 'unused'});
 db.coupons.insert({code: 'Bue3ot', type: 'gold', status: 'unused'});
