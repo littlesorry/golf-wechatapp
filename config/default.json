@@ -28,7 +28,8 @@
             "coupon": {
                 "code": "String",
                 "type": "String",
-                "status": "String"
+                "status": "String",
+                "openId": "String"
             },
             "user": {
                 "openId": "String",

@@ -133,7 +133,14 @@
 			chooseBtn.x = this.width * 0.145;
 			chooseBtn.y = this.height * 0.658;
 			chooseBtn.on(game.EVENTS.TAP, function(e) {
-				game.displayPage1();
+				$.get("/draw/count")
+				.done(function(resp) {
+					if(resp.count === 0) {
+						game.displayPage1();
+					} else {
+						alert("已经领取福袋，请去兑换页面！");
+					}
+				});
 			});
 
 			this.chooseBtn = chooseBtn;
@@ -147,7 +154,14 @@
 			exchangeBtn.x = this.width * 0.145;
 			exchangeBtn.y = this.height * 0.734;
 			exchangeBtn.on(game.EVENTS.TAP, function(e) {
-				window.location = 'exchange.html';
+				$.get("/draw/count")
+				.done(function(resp) {
+					if(resp.count === 0) {
+						alert("请先选取福袋！");
+					} else {
+						window.location = 'exchange.html';
+					}
+				});
 			});
 
 			this.exchangeBtn = exchangeBtn;
@@ -175,7 +189,16 @@
 			baglistBtn.x = this.width * 0.5;
 			baglistBtn.y = this.height * 0.93;
 			baglistBtn.on(game.EVENTS.TAP, function(e) {
-				// TODO:
+				$.get("/draw/count")
+				.done(function(resp) {
+					if(resp.count === 0) {
+						alert("");
+					} else if (resp.count === 2) {
+						game.displayPage4(resp.data);
+					} else {
+						game.displayPage5(resp.data);
+					}
+				});
 			});
 
 			this.baglistBtn = baglistBtn;
