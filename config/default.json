@@ -13,6 +13,9 @@
         "db": {
             "url": "mongodb://localhost/golf"
         },
+        "extends": [
+            "coupon"
+        ],
         "models": {
             "shop": {
                 "state": "String",
@@ -24,12 +27,12 @@
             },
             "coupon": {
                 "code": "String",
-                "bagCode": "String",
-                "type": "String"
+                "type": "String",
+                "status": "String"
             },
             "user": {
                 "openId": "String",
-                "code": "String"
+                "coupon": "Mixed"
             },
             "registry": {
                 "name": "String",

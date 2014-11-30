@@ -206,6 +206,7 @@
 			playBtn.y = this.height * 0.806;
 			playBtn.on(game.EVENTS.TAP, function(e) {
 				$("#ageInput").hide();
+				game.data.age = $("#ageInput").val();
 				game.displayPage2();
 			});
 
@@ -397,7 +398,19 @@
 			openBtn.x = this.width * 0.2;
 			openBtn.y = this.height * 0.499;
 			openBtn.on(game.EVENTS.TAP, function(e) {
-				game.displayPage4();
+				$.get("/draw", {
+					isMember: game.data.isMember
+				}).done(function(resp) {
+					if (resp.status === 'ok') {
+						if (resp.type === 'gold') {
+							game.displayPage4(resp.data);
+						} else {
+							game.displayPage5(resp.data);
+						}
+					} else {
+						alert("无法领取优惠券！");						
+					}
+				});
 			});
 
 			this.openBtn = openBtn;
@@ -420,7 +433,7 @@
 		ns.history.push("displayPage3", "#displayPage3");
 	};
 
-	game.displayPage4 = function() {
+	game.displayPage4 = function(data) {
 		game.state = "gold";
 		if(this.goldPrizePage == null) {
 			this.goldPrizePage = buildBackground("goldPrizePage", "page4");
@@ -449,7 +462,7 @@
 			bagCode.textAlign = "start"; 
 			bagCode.lineSpacing = 35; 
 			bagCode.color = "#fff";
-			bagCode.text = "TEST0123";
+			bagCode.text = data.bag;
 			bagCode.font = "40px arial"
 
 			this.bagCode = bagCode;
@@ -464,7 +477,7 @@
 			couponCode.textAlign = "start"; 
 			couponCode.lineSpacing = 35; 
 			couponCode.color = "#fff";
-			couponCode.text = "TEST0123";
+			couponCode.text = data.coupon;
 			couponCode.font = "40px arial"
 
 			this.couponCode = couponCode;
@@ -479,7 +492,7 @@
 		ns.history.push("displayPage4", "#displayPage4");
 	};
 
-	game.displayPage5 = function() {
+	game.displayPage5 = function(data) {
 		game.state = "silver";
 		if(this.silverPrizePage == null) {
 			this.silverPrizePage = buildBackground("silverPrizePage", "page5");
@@ -508,7 +521,7 @@
 			silverCode.textAlign = "start"; 
 			silverCode.lineSpacing = 35; 
 			silverCode.color = "#fff";
-			silverCode.text = "TEST0123";
+			silverCode.text = data.coupon;
 			silverCode.font = "40px arial"
 
 			this.silverCode = silverCode;
