@@ -40,14 +40,14 @@
 				shopText.textAlign = "start"; 
 				shopText.lineSpacing = 30; 
 				shopText.color = "#fff";
-				shopText.text = data[i].location;
+				shopText.text = data[i].address;
 				shopText.font = "32px 黑体";
 				initLocationPosition(shopText, i);
 
 				ns.game.stage.addChild(shopText);
 				shopTexts.push(shopText);
 
-				if (ns.game.state === "gold" && data[i].remaining) {
+				if (ns.game.state === "gold") {
 					var remainingText = new Q.Text({id: "remainingText"});
 					remainingText.width = 120;
 					remainingText.height = 52;
@@ -56,7 +56,7 @@
 					remainingText.textAlign = "start"; 
 					remainingText.lineSpacing = 35; 
 					remainingText.color = "#fff";
-					remainingText.text = data[i].remaining;
+					remainingText.text = data[i].remaingNumber || 0;
 					remainingText.font = "35px 黑体";
 					initRemainingPosition(remainingText, i);
 

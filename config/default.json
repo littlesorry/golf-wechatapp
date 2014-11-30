@@ -1,9 +1,6 @@
 {
     "app": {
-        "wechatRequired": true,
-        "runtime": {
-            "port": 80
-        },
+        "wechatRequired": false,
         "integration": {
             "wechatAppId": "wx36b4959dcf0a1af9",
             "wechatAppScret": "33230a6c1841999533a7c0409c95a234",
@@ -21,7 +18,7 @@
                 "state": "String",
                 "city": "String",
                 "code": "String",
-                "address", "String",
+                "address": "String",
                 "initNumber": "Number",
                 "remaingNumber": "Number"
             },

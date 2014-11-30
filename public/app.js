@@ -535,6 +535,20 @@
 		return pageSrc;
 	}
 
+	function searchShop(state, city, bag) {
+		if (state === '省份' || city === '城市') {
+			alert("请选择省份及城市！");
+			return;
+		}
+
+		$.get("/shop", {
+			"state": state,
+			"city": city
+		}).done(function(resp) {
+			game.displayPage7Result(bag, resp.data);
+		});
+	};
+
 	game.displayPage7 = function(bag) {	
 		if(this.cityPage == null) {
 			this.cityPage = buildBackground("cityPage", pickPrePage(bag));
@@ -548,7 +562,7 @@
 			queryBtn.x = this.width * 0.2;
 			queryBtn.y = this.height * 0.39;
 			queryBtn.on(game.EVENTS.TAP, function(e) {
-				game.displayPage7Result(bag, {});
+				searchShop(stateText.text, cityText.text, bag);
 			});
 
 			this.queryBtn = queryBtn;
@@ -620,8 +634,7 @@
 			resultQueryBtn.x = this.width * 0.2;
 			resultQueryBtn.y = this.height * 0.39;
 			resultQueryBtn.on(game.EVENTS.TAP, function(e) {
-				// TODO:
-				game.displayPage7Result(bag, [{location: "XXXXXX市某某路某某路", remaining: Math.random()}, {location: "XXXXXX市某某路某某路", remaining: 1}, {location: "XXXXXX市某某路某某路", remaining: 1}, {location: "XXXXXX市某某路某某路", remaining: 1}, {location: "XXXXXX市某某路某某路", remaining: 1}]);
+				searchShop(stateResultText.text, cityResultText.text, bag);
 			});
 
 			this.resultQueryBtn = resultQueryBtn;
