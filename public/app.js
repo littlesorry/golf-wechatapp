@@ -192,7 +192,7 @@
 				$.get("/draw/count")
 				.done(function(resp) {
 					if(resp.count === 0) {
-						alert("");
+						alert("请先选取福袋！");
 					} else if (resp.count === 2) {
 						game.displayPage4(resp.data);
 					} else {
