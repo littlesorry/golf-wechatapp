@@ -93,7 +93,7 @@
 
 		var panel = $(template({"items": items}))
 			.appendTo('body')
-			.on(events[2], "a", function() {
+			.one(events[2], "a", function() {
 				panel.addClass("zoomOut");
 				panel.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
 					panel.remove();
