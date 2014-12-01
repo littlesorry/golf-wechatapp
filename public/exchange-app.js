@@ -121,6 +121,8 @@
 			exchangeBtn.y = this.height * 0.7;
 			exchangeBtn.on(game.EVENTS.TAP, function(e) {
 				// TODO
+				$("#exchangeInput").hide();
+				$("#shopNoInput").hide();
 				game.displayPage17();
 			});
 
@@ -132,6 +134,62 @@
 					, this.exchangeBtn);
 
 		this.stage.step();
+
+		if ($("#exchangeInput").size() < 1) {
+		    var exchangeInput = Q.createDOM("input"
+				, {
+					id:"exchangeInput"
+					, type: "text"
+					, style : {
+						position:"absolute",
+						top : (game.height * 0.342) + "px",
+						left: (game.width * 0.452) + "px",
+						width: (game.width * 0.43)+ "px",
+						height: (game.height * 0.054) + "px",
+						background: "transparent",
+						border: "none",
+						"text-align": "right",
+						"padding-right": "8px",
+						"color": "#fff",
+						"z-index": 9999,
+						"font-size": "18px",
+						"letter-spacing": "1px"
+					}
+			});
+
+		    var shopNoInput = Q.createDOM("input"
+				, {
+					id:"shopNoInput"
+					, type: "text"
+					, style : {
+						position:"absolute",
+						top : (game.height * 0.478) + "px",
+						left: (game.width * 0.452) + "px",
+						width: (game.width * 0.43)+ "px",
+						height: (game.height * 0.054) + "px",
+						background: "transparent",
+						border: "none",
+						"text-align": "right",
+						"padding-right": "8px",
+						"color": "#fff",
+						"z-index": 9999,
+						"font-size": "18px",
+						"letter-spacing": "1px"
+					}
+			});
+			setTimeout(function() {
+    			$("body").prepend(exchangeInput);
+    			$("body").prepend(shopNoInput);
+    			NProgress.done();
+			}, 800);
+		} else {
+			setTimeout(function() {
+				$("#exchangeInput").show();
+				$("#shopNoInput").show();
+				NProgress.done();
+			}, 800);
+		}
+
 		ns.history.push("displayPage16", "#displayPage16");
 	};
 
@@ -176,6 +234,12 @@
 			submitBtn.y = this.height * 0.78;
 			submitBtn.on(game.EVENTS.TAP, function(e) {
 				// TODO
+				$("#nameInput").hide();
+				$("#mobileInput").hide();
+				$("#idInput").hide();
+				$("#emailInput").hide();
+
+				game.displayPage19();
 			});
 
 			this.submitBtn = submitBtn;
@@ -184,9 +248,123 @@
 		this.stage.addChild(
 					this.registerPage
 					, this.submitBtn);
-
 		this.stage.step();
+
+		if ($("#nameInput").size() < 1) {
+		    var nameInput = Q.createDOM("input"
+				, {
+					id:"nameInput"
+					, type: "text"
+					, style : {
+						position:"absolute",
+						top : (game.height * 0.396) + "px",
+						left: (game.width * 0.382) + "px",
+						width: (game.width * 0.505)+ "px",
+						height: (game.height * 0.032) + "px",
+						background: "transparent",
+						border: "none",
+						"text-align": "right",
+						"padding-right": "8px",
+						"color": "#fff",
+						"z-index": 9999,
+						"font-size": "18px",
+						"letter-spacing": "1px"
+					}
+			});
+
+		    var mobileInput = Q.createDOM("input"
+				, {
+					id:"mobileInput"
+					, type: "text"
+					, style : {
+						position:"absolute",
+						top : (game.height * 0.455) + "px",
+						left: (game.width * 0.382) + "px",
+						width: (game.width * 0.505)+ "px",
+						height: (game.height * 0.032) + "px",
+						background: "transparent",
+						border: "none",
+						"text-align": "right",
+						"padding-right": "8px",
+						"color": "#fff",
+						"z-index": 9999,
+						"font-size": "18px",
+						"letter-spacing": "1px"
+					}
+			});
+
+		    var idInput = Q.createDOM("input"
+				, {
+					id:"idInput"
+					, type: "text"
+					, style : {
+						position:"absolute",
+						top : (game.height * 0.517) + "px",
+						left: (game.width * 0.382) + "px",
+						width: (game.width * 0.505)+ "px",
+						height: (game.height * 0.032) + "px",
+						background: "transparent",
+						border: "none",
+						"text-align": "right",
+						"padding-right": "8px",
+						"color": "#fff",
+						"z-index": 9999,
+						"font-size": "18px",
+						"letter-spacing": "1px"
+					}
+			});
+
+		    var emailInput = Q.createDOM("input"
+				, {
+					id:"emailInput"
+					, type: "text"
+					, style : {
+						position:"absolute",
+						top : (game.height * 0.574) + "px",
+						left: (game.width * 0.382) + "px",
+						width: (game.width * 0.505)+ "px",
+						height: (game.height * 0.032) + "px",
+						background: "transparent",
+						border: "none",
+						"text-align": "right",
+						"padding-right": "8px",
+						"color": "#fff",
+						"z-index": 9999,
+						"font-size": "18px",
+						"letter-spacing": "1px"
+					}
+			});
+
+			setTimeout(function() {
+    			$("body").prepend(nameInput);
+    			$("body").prepend(mobileInput);
+    			$("body").prepend(idInput);
+    			$("body").prepend(emailInput);
+    			NProgress.done();
+			}, 800);
+		} else {
+			setTimeout(function() {
+				$("#nameInput").show();
+				$("#mobileInput").show();
+				$("#idInput").show();
+				$("#emailInput").show();
+				NProgress.done();
+			}, 800);
+		}
+
 		ns.history.push("displayPage18", "#displayPage18");
+	};
+
+	game.displayPage19 = function() {
+		if(this.postSubmitPage == null) {
+			this.postSubmitPage = buildBackground("postSubmitPage", "page19");
+		}
+		
+		this.stage.addChild(
+					this.postSubmitPage);
+		this.stage.step();
+
+		ns.history.push("displayPage19", "#displayPage19");
 	};
 
 	$(function() {

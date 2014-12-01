@@ -15,7 +15,8 @@
 		{id: "page16", width: 640, src: "assets/16-01.jpg"},
 		{id: "page17", width: 640, src: "assets/17-01.jpg"},
 		{id: "page17_2", width: 640, src: "assets/17-02.jpg"},
-		{id: "page18", width: 640, src: "assets/18-01.jpg"}
+		{id: "page18", width: 640, src: "assets/18-01.jpg"},
+		{id: "page19", width: 640, src: "assets/19-01.jpg"}
 	];
 
 	R.backgroundAssets = [
