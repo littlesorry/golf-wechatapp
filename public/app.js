@@ -215,7 +215,8 @@
     	ns.history.push("displayPage0", "#displayPage0");
 	};
 
-	game.displayPage1 = function() {	
+	game.displayPage1 = function() {
+		NProgress.start();
 		if(this.startPage == null) {
 			this.startPage = buildBackground("startPage", "page1");
 
@@ -322,11 +323,13 @@
 			});
 			setTimeout(function() {
     			$("body").prepend(ageInput);
-			}, 500);
+    			NProgress.done();
+			}, 800);
 		} else {
 			setTimeout(function() {
 				$("#ageInput").show();
-			}, 500);
+				NProgress.done();
+			}, 800);
 		}
 
     	ns.history.push("displayPage1", "#displayPage1");
@@ -458,6 +461,7 @@
 
 	game.displayPage4 = function(data) {
 		game.state = "gold";
+		NProgress.start();
 		if(this.goldPrizePage == null) {
 			this.goldPrizePage = buildBackground("goldPrizePage", "page4");
 
@@ -485,7 +489,7 @@
 			bagCode.textAlign = "start"; 
 			bagCode.lineSpacing = 35; 
 			bagCode.color = "#fff";
-			bagCode.text = data.bag;
+			// bagCode.text = data.bag;
 			bagCode.font = "40px arial"
 
 			this.bagCode = bagCode;
@@ -500,7 +504,7 @@
 			couponCode.textAlign = "start"; 
 			couponCode.lineSpacing = 35; 
 			couponCode.color = "#fff";
-			couponCode.text = data.coupon;
+			// couponCode.text = data.coupon;
 			couponCode.font = "40px arial"
 
 			this.couponCode = couponCode;
@@ -512,11 +516,19 @@
 					, this.couponCode
 					, this.reserveBtn);
 		this.stage.step();
+
+		setTimeout(function() {
+			game.bagCode.text = data.bag;
+			game.couponCode.text = data.coupon;
+			NProgress.done();
+		}, 2200);
+
 		ns.history.push("displayPage4", "#displayPage4");
 	};
 
 	game.displayPage5 = function(data) {
 		game.state = "silver";
+		NProgress.start();
 		if(this.silverPrizePage == null) {
 			this.silverPrizePage = buildBackground("silverPrizePage", "page5");
 
@@ -544,7 +556,7 @@
 			silverCode.textAlign = "start"; 
 			silverCode.lineSpacing = 35; 
 			silverCode.color = "#fff";
-			silverCode.text = data.coupon;
+			// silverCode.text = data.coupon;
 			silverCode.font = "40px arial"
 
 			this.silverCode = silverCode;
@@ -555,6 +567,11 @@
 					, this.silverCode
 					, this.openBtn2);
 		this.stage.step();
+
+		setTimeout(function() {
+			game.silverCode.text = data.coupon;
+			NProgress.done();
+		}, 2200);
 
 		ns.history.push("displayPage5", "#displayPage5");
 	};
