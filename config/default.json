@@ -7,7 +7,7 @@
             "wechatCallbackURL": "http://wxkf.gofaner.com/wechat",
             "wechatOAuthURL": "https://open.weixin.qq.com/connect/oauth2/authorize?appid={{encode appId}}&redirect_uri={{encode callbackURL}}&response_type=code&scope=snsapi_login&state={{encode state}}#wechat_redirect",
             "wechatAccessTokenURL": "https://api.weixin.qq.com/sns/oauth2/access_token?appid={{encode appId}}&secret={{encode secret}}&code={{encode code}}&grant_type=authorization_code",
-            "wechatUserInfoURL": "https://api.weixin.qq.com/sns/userinfo?access_token={{encode token}}&openid={{encode openId}}"
+            "wechatUserInfoURL": "https://api.weixin.qq.com/cgi-bin/user/info?access_token={{encode token}}&openid={{encode openId}}&lang=zh_CN"
         }
     },
     "data": {
