@@ -140,18 +140,17 @@
 				$.get("/register", {
 					couponCode: $("#exchangeInput").val(),
 					shopCode: $("#shopNoInput").val()
-				}).done(function() {
-					$("#exchangeInput").hide();
-					$("#shopNoInput").hide();
-
+				}).done(function(resp) {
 					NProgress.done();
-					game.displayPage17();
+					if (resp.status === 'error') {
+						alert(resp.message);
+						return;
+					} else (resp.status === 'fail') {
+						$("#exchangeInput").hide();
+						$("#shopNoInput").hide();
+						game.displayPage17(resp.status);
+					}
 				}) ;
-
-				// TODO
-				// $("#exchangeInput").hide();
-				// $("#shopNoInput").hide();
-				// game.displayPage17();
 			});
 
 			this.exchangeBtn = exchangeBtn;
@@ -221,9 +220,9 @@
 		ns.history.push("displayPage16", "#displayPage16");
 	};
 
-	game.displayPage17 = function() {
+	game.displayPage17 = function(status) {
 		if(this.resultPage == null) {
-			this.resultPage = buildBackground("resultPage", "page17");
+			this.resultPage = buildBackground("resultPage", status === 'fail' ? "page17_2" : "page17");
 
 			var goBtn = new Q.Button({id:"goBtn", image: ns.R.getImage("button")});
 			goBtn.setUpState({rect:[0,0,450,79]});
