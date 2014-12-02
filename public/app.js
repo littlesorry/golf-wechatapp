@@ -425,7 +425,8 @@
 			openBtn.y = this.height * 0.499;
 			openBtn.on(game.EVENTS.TAP, function(e) {
 				$.get("/draw", {
-					isMember: game.data.isMember
+					isMember: game.data.isMember,
+					age: $("#ageInput").val()
 				}).done(function(resp) {
 					if (resp.status === 'ok') {
 						if (resp.type === 'gold') {
