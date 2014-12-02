@@ -24,7 +24,7 @@
                 "code": "String",
                 "address": "String",
                 "initNumber": "Number",
-                "remaingNumber": "Number"
+                "remainingNumber": "Number"
             },
             "coupon": {
                 "code": "String",
@@ -41,6 +41,10 @@
                 "phone": "String",
                 "personId": "String",
                 "email": "String"
+            },
+            "exchange": {
+                "couponCode": "String",
+                "shopCode": "String"
             }
         }
     }

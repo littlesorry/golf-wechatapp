@@ -108,6 +108,7 @@
 	};
 
 	game.displayPage16 = function() {	
+		NProgress.start();
 		if(this.exchangePage == null) {
 			this.exchangePage = buildBackground("exchangePage", "page16");
 
@@ -220,7 +221,25 @@
 		ns.history.push("displayPage17", "#displayPage17");
 	};
 
+	function validateRegistry(name, phone, personId, email) {
+		if (!name || name.length === 0) {
+			return "请填写姓名！";
+		}
+		if (!phone || phone.length === 0) {
+			return "请填写手机号！";
+		}
+		if (!personId || personId.length === 0) {
+			return "请填写身份证号！";
+		}
+
+		if (!/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			.test(email)) {
+			return "无效的email格式！";
+		}
+	}
+
 	game.displayPage18 = function() {
+		NProgress.start();
 		if(this.registerPage == null) {
 			this.registerPage = buildBackground("registerPage", "page18");
 
@@ -233,13 +252,27 @@
 			submitBtn.x = this.width * 0.145;
 			submitBtn.y = this.height * 0.78;
 			submitBtn.on(game.EVENTS.TAP, function(e) {
-				// TODO
-				$("#nameInput").hide();
-				$("#mobileInput").hide();
-				$("#idInput").hide();
-				$("#emailInput").hide();
+				var validate = validateRegistry($("#nameInput").val(), $("#mobileInput").val(), $("#idInput").val(), $("#emailInput").val());
+				if (validate) {
+					alert(validate);
+					return;
+				}
 
-				game.displayPage19();
+				NProgress.start();
+				$.get("/register", {
+					name: $("#nameInput").val(),
+					phone: $("#mobileInput").val(),
+					personId: $("#idInput").val(),
+					email: $("#emailInput").val()
+				}).done(function() {
+					$("#nameInput").hide();
+					$("#mobileInput").hide();
+					$("#idInput").hide();
+					$("#emailInput").hide();
+
+					NProgress.done();
+					game.displayPage19();
+				}) ;
 			});
 
 			this.submitBtn = submitBtn;

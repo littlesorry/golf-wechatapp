@@ -56,7 +56,7 @@
 					remainingText.textAlign = "start"; 
 					remainingText.lineSpacing = 35; 
 					remainingText.color = "#fff";
-					remainingText.text = data[i].remaingNumber || 0;
+					remainingText.text = data[i].remainingNumber || 0;
 					remainingText.font = "35px 黑体";
 					initRemainingPosition(remainingText, i);
 

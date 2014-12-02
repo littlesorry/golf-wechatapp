@@ -46,25 +46,40 @@ describe("data.js", function() {
     //     });
     // });
 
-    describe("#insert@coupon", function() {
-        it("should insert coupon ok", function(done) {
-            data("coupon").insert({
-                code: "code001",
-                status: "unused"
-            }).then(function() {
-                done();
-            }).catch(function(err) {
-                done(err);
-            });
-        });
-    });
+    // describe("#insert@coupon", function() {
+    //     it("should insert coupon ok", function(done) {
+    //         data("coupon").insert({
+    //             code: "code001",
+    //             status: "unused"
+    //         }).then(function() {
+    //             done();
+    //         }).catch(function(err) {
+    //             done(err);
+    //         });
+    //     });
+    // });
 
     describe("#findOneAndUpdate@coupon", function() {
         it("should findOneAndUpdate one user", function(done) {
-            data("coupon").findOneAndUpdate({"code": "code001"}, {"status": "sent"}).then(function(doc) {
+            // data("shop").findOne({"code": "test2"}).then(function(doc) {
+            //     console.log(doc);
+            //     doc.update({$dec: {remainingNumber: -1}});
+            //     doc.save();
+            //     done();
+            // });
+            data("shop").findOne({"code": "test2"}).then(function(doc) {
                 console.log(doc);
-                done();
-            });
+                data("shop").findOneAndUpdate({"code": "test2"}, {$inc: {remainingNumber: -1}})
+                .then(function(doc) {
+                    console.log(doc);
+                    done();
+                });
+
+                
+
+                // doc.update({$dec: {remainingNumber: -1}});
+                // doc.save();
+            });        
         });
     });
 

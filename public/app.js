@@ -459,6 +459,17 @@
 		ns.history.push("displayPage3", "#displayPage3");
 	};
 
+	function selectText(target) {
+		var sel = window.getSelection(),
+    	range = document.createRange();
+
+    	range.setStart($(target)[0].firstChild, 0);
+		range.setEnd($(target)[0].firstChild, $(target).text().length);
+
+    	sel.removeAllRanges();
+		sel.addRange(range);
+	}
+
 	game.displayPage4 = function(data) {
 		game.state = "gold";
 		NProgress.start();
