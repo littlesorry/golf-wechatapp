@@ -472,6 +472,7 @@
 	    	sel.removeAllRanges();
 			sel.addRange(range);
 
+			alert(range.text);
 		} catch (err) {
 			alert(err);
 		}
