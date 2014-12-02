@@ -107,6 +107,15 @@
 		this.frames++;
 	};
 
+	function validateExchange(exchange, shop) {
+		if (!exchange || exchange.length === 0) {
+			return "请填写串号！";
+		}
+		if (!shop || shop.length === 0) {
+			return "请填写柜台编码！";
+		}
+	}
+
 	game.displayPage16 = function() {	
 		NProgress.start();
 		if(this.exchangePage == null) {
@@ -121,10 +130,28 @@
 			exchangeBtn.x = this.width * 0.145;
 			exchangeBtn.y = this.height * 0.7;
 			exchangeBtn.on(game.EVENTS.TAP, function(e) {
+				var error = validateExchange($("#exchangeInput").val(), $("#shopNoInput").val());
+				if (error) {
+					alert(error);
+					return;
+				}
+
+				NProgress.start();
+				$.get("/register", {
+					couponCode: $("#exchangeInput").val(),
+					shopCode: $("#shopNoInput").val()
+				}).done(function() {
+					$("#exchangeInput").hide();
+					$("#shopNoInput").hide();
+
+					NProgress.done();
+					game.displayPage17();
+				}) ;
+
 				// TODO
-				$("#exchangeInput").hide();
-				$("#shopNoInput").hide();
-				game.displayPage17();
+				// $("#exchangeInput").hide();
+				// $("#shopNoInput").hide();
+				// game.displayPage17();
 			});
 
 			this.exchangeBtn = exchangeBtn;
