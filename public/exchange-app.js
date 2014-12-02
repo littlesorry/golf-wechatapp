@@ -137,7 +137,7 @@
 				}
 
 				NProgress.start();
-				$.get("/register", {
+				$.get("/exchange", {
 					couponCode: $("#exchangeInput").val(),
 					shopCode: $("#shopNoInput").val()
 				}).done(function(resp) {
