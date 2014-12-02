@@ -460,14 +460,20 @@
 	};
 
 	function selectText(target) {
-		var sel = window.getSelection(),
-    	range = document.createRange();
+		alert("selectText");
+		try {
+			var sel = window.getSelection(),
+	    	range = document.createRange();
 
-    	range.setStart($(target)[0].firstChild, 0);
-		range.setEnd($(target)[0].firstChild, $(target).text().length);
+	    	range.setStart($(target)[0].firstChild, 0);
+			range.setEnd($(target)[0].firstChild, $(target).text().length);
 
-    	sel.removeAllRanges();
-		sel.addRange(range);
+	    	sel.removeAllRanges();
+			sel.addRange(range);
+
+		} catch (err) {
+			alert(err);
+		}
 	}
 
 	game.displayPage4 = function(data) {
