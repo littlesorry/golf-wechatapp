@@ -145,7 +145,7 @@
 					if (resp.status === 'error') {
 						alert(resp.message);
 						return;
-					} else (resp.status === 'fail') {
+					} else {
 						$("#exchangeInput").hide();
 						$("#shopNoInput").hide();
 						game.displayPage17(resp.status);
