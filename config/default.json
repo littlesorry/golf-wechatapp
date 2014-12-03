@@ -1,6 +1,6 @@
 {
     "app": {
-        "wechatRequired": false,
+        "wechatRequired": true,
         "integration": {
             "wechatAppId": "wx36b4959dcf0a1af9",
             "wechatAppScret": "33230a6c1841999533a7c0409c95a234",
