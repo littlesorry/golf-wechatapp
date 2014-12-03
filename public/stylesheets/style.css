@@ -71,11 +71,11 @@ body, html{height: 100%;}
 }
 
 .arrow-right {	
-	border-left: 25px solid #d40000;
+	border-left: 27px solid #d40000;
 }
 
 .arrow-left { 
-	border-right:25px solid #d40000;
+	border-right:27px solid #d40000;
 }
 
 @-webkit-keyframes flash {
