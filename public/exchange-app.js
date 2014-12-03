@@ -107,6 +107,15 @@
 		this.frames++;
 	};
 
+	function validateExchange(exchange, shop) {
+		if (!exchange || exchange.length === 0) {
+			return "请填写串号！";
+		}
+		if (!shop || shop.length === 0) {
+			return "请填写柜台编码！";
+		}
+	}
+
 	game.displayPage16 = function() {	
 		NProgress.start();
 		if(this.exchangePage == null) {
@@ -121,17 +130,27 @@
 			exchangeBtn.x = this.width * 0.145;
 			exchangeBtn.y = this.height * 0.7;
 			exchangeBtn.on(game.EVENTS.TAP, function(e) {
-				// TODO
-				$("#exchangeInput").hide();
-				$("#shopNoInput").hide();
+				var error = validateExchange($("#exchangeInput").val(), $("#shopNoInput").val());
+				if (error) {
+					alert(error);
+					return;
+				}
 
-				$.get("", {
-
-				}).done(function() {
-					
-				});
-
-				game.displayPage17();
+				NProgress.start();
+				$.get("/exchange", {
+					couponCode: $("#exchangeInput").val(),
+					shopCode: $("#shopNoInput").val()
+				}).done(function(resp) {
+					NProgress.done();
+					if (resp.status === 'error') {
+						alert(resp.message);
+						return;
+					} else {
+						$("#exchangeInput").hide();
+						$("#shopNoInput").hide();
+						game.displayPage17(resp.status);
+					}
+				}) ;
 			});
 
 			this.exchangeBtn = exchangeBtn;
@@ -201,9 +220,10 @@
 		ns.history.push("displayPage16", "#displayPage16");
 	};
 
-	game.displayPage17 = function(resultStatus) {
+
+	game.displayPage17 = function(status) {
 		if(this.resultPage == null) {
-			this.resultPage = buildBackground("resultPage", resultStatus === "fail" ? "page17_2" : "page17");
+			this.resultPage = buildBackground("resultPage", status === 'fail' ? "page17_2" : "page17");
 
 			var goBtn = new Q.Button({id:"goBtn", image: ns.R.getImage("button")});
 			goBtn.setUpState({rect:[0,0,450,79]});

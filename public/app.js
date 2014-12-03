@@ -431,7 +431,8 @@
 			openBtn.y = this.height * 0.499;
 			openBtn.on(game.EVENTS.TAP, function(e) {
 				$.get("/draw", {
-					isMember: game.data.isMember
+					isMember: game.data.isMember,
+					age: $("#ageInput").val()
 				}).done(function(resp) {
 					if (resp.status === 'ok') {
 						if (resp.type === 'gold') {
@@ -466,14 +467,21 @@
 	};
 
 	function selectText(target) {
-		var sel = window.getSelection(),
-    	range = document.createRange();
+		alert("selectText");
+		try {
+			var sel = window.getSelection(),
+	    	range = document.createRange();
 
-    	range.setStart($(target)[0].firstChild, 0);
-		range.setEnd($(target)[0].firstChild, $(target).text().length);
+	    	range.setStart($(target)[0].firstChild, 0);
+			range.setEnd($(target)[0].firstChild, $(target).text().length);
 
-    	sel.removeAllRanges();
-		sel.addRange(range);
+	    	sel.removeAllRanges();
+			sel.addRange(range);
+
+			alert(range.text);
+		} catch (err) {
+			alert(err);
+		}
 	}
 
 	game.displayPage4 = function(data) {
@@ -512,7 +520,7 @@
 			this.bagCode = bagCode;
 
 			var couponCode = new Q.Text({id: "couponCode"});
-			couponCode.width = 220;
+			couponCode.width = 210;
 			couponCode.height = 52;
 			couponCode.scaleX = this.goldPrizePage.scaleX;
 			couponCode.scaleY = this.goldPrizePage.scaleY;
@@ -525,13 +533,43 @@
 			couponCode.font = "40px arial"
 
 			this.couponCode = couponCode;
+
+			var copyBagCodeBtn = new Q.Button({id:"copyBagCodeBtn", image: ns.R.getImage("button")});
+			copyBagCodeBtn.setUpState({rect:[0,0,120,52]});
+			copyBagCodeBtn.width= 120;
+			copyBagCodeBtn.height = 52;
+			copyBagCodeBtn.scaleX = this.goldPrizePage.scaleX;
+			copyBagCodeBtn.scaleY = this.goldPrizePage.scaleY;
+			copyBagCodeBtn.x = this.width * 0.756;
+			copyBagCodeBtn.y = this.height * 0.385;
+			copyBagCodeBtn.on(game.EVENTS.TAP, function(e) {
+				selectText("#" + game.bagCode.id);
+			});
+
+			this.copyBagCodeBtn = copyBagCodeBtn;
+
+			var copyCouponCodeBtn = new Q.Button({id:"copyCouponCodeBtn", image: ns.R.getImage("button")});
+			copyCouponCodeBtn.setUpState({rect:[0,0,120,52]});
+			copyCouponCodeBtn.width= 120;
+			copyCouponCodeBtn.height = 52;
+			copyCouponCodeBtn.scaleX = this.goldPrizePage.scaleX;
+			copyCouponCodeBtn.scaleY = this.goldPrizePage.scaleY;
+			copyCouponCodeBtn.x = this.width * 0.756;
+			copyCouponCodeBtn.y = this.height * 0.447;
+			copyCouponCodeBtn.on(game.EVENTS.TAP, function(e) {
+				selectText("#" + game.couponCode.id);
+			});
+
+			this.copyCouponCodeBtn = copyCouponCodeBtn;
 		}
 		
 		this.stage.addChild(
 					this.goldPrizePage
 					, this.bagCode
 					, this.couponCode
-					, this.reserveBtn);
+					, this.reserveBtn
+					, this.copyBagCodeBtn
+					, this.copyCouponCodeBtn);
 		this.stage.step();
 
 		setTimeout(function() {
@@ -577,12 +615,27 @@
 			silverCode.font = "40px arial"
 
 			this.silverCode = silverCode;
+
+			var copySilverCodeBtn = new Q.Button({id:"copySilverCodeBtn", image: ns.R.getImage("button")});
+			copySilverCodeBtn.setUpState({rect:[0,0,120,52]});
+			copySilverCodeBtn.width= 120;
+			copySilverCodeBtn.height = 52;
+			copySilverCodeBtn.scaleX = this.silverPrizePage.scaleX;
+			copySilverCodeBtn.scaleY = this.silverPrizePage.scaleY;
+			copySilverCodeBtn.x = this.width * 0.756;
+			copySilverCodeBtn.y = this.height * 0.385;
+			copySilverCodeBtn.on(game.EVENTS.TAP, function(e) {
+				selectText("#" + game.silverCode.id);
+			});
+
+			this.copySilverCodeBtn = copySilverCodeBtn;
 		};
 		
 		this.stage.addChild(
 					this.silverPrizePage
 					, this.silverCode
-					, this.openBtn2);
+					, this.openBtn2
+					, this.copySilverCodeBtn);
 		this.stage.step();
 
 		setTimeout(function() {
