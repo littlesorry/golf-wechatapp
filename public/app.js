@@ -667,7 +667,8 @@
 		NProgress.start();
 		$.get("/shop", {
 			"state": state,
-			"city": city
+			"city": city,
+			"_": Math.random()
 		}).done(function(resp) {
 			NProgress.done();
 			game.displayPage7Result(bag, resp.data);
