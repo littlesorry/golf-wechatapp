@@ -124,6 +124,13 @@
 				// TODO
 				$("#exchangeInput").hide();
 				$("#shopNoInput").hide();
+
+				$.get("", {
+
+				}).done(function() {
+					
+				});
+
 				game.displayPage17();
 			});
 
@@ -194,9 +201,9 @@
 		ns.history.push("displayPage16", "#displayPage16");
 	};
 
-	game.displayPage17 = function() {
+	game.displayPage17 = function(resultStatus) {
 		if(this.resultPage == null) {
-			this.resultPage = buildBackground("resultPage", "page17");
+			this.resultPage = buildBackground("resultPage", resultStatus === "fail" ? "page17_2" : "page17");
 
 			var goBtn = new Q.Button({id:"goBtn", image: ns.R.getImage("button")});
 			goBtn.setUpState({rect:[0,0,450,79]});

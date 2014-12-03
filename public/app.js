@@ -133,7 +133,9 @@
 			chooseBtn.x = this.width * 0.145;
 			chooseBtn.y = this.height * 0.658;
 			chooseBtn.on(game.EVENTS.TAP, function(e) {
-				$.get("/draw/count")
+				$.get("/draw/count", {
+					"_": Math.random()
+				})
 				.done(function(resp) {
 					if(resp.count === 0) {
 						game.displayPage1();
@@ -154,7 +156,9 @@
 			exchangeBtn.x = this.width * 0.145;
 			exchangeBtn.y = this.height * 0.734;
 			exchangeBtn.on(game.EVENTS.TAP, function(e) {
-				$.get("/draw/count")
+				$.get("/draw/count", {
+					"_": Math.random()
+				})
 				.done(function(resp) {
 					if(resp.count === 0) {
 						alert("请先选取福袋！");
@@ -189,7 +193,9 @@
 			baglistBtn.x = this.width * 0.5;
 			baglistBtn.y = this.height * 0.93;
 			baglistBtn.on(game.EVENTS.TAP, function(e) {
-				$.get("/draw/count")
+				$.get("/draw/count", {
+					"_": Math.random()
+				})
 				.done(function(resp) {
 					if(resp.count === 0) {
 						alert("请先选取福袋！");
