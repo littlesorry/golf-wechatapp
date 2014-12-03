@@ -58,18 +58,37 @@ body, html{height: 100%;}
 	background-color: #31abd4;
 }
 
-.arrow-right {
+.arrow {
+	position: absolute;
 	width: 0; 
 	height: 0; 
 	border-top: 60px solid transparent;
 	border-bottom: 60px solid transparent;
-	border-left: 30px solid #d40000;
+	z-index: 9999;
+	-webkit-animation: flash 3s linear infinite;
+	animation: flash 3s linear infinite;
+	display: none;
 }
 
-.arrow-left {
-	width: 0; 
-	height: 0; 
-	border-top: 60px solid transparent;
-	border-bottom: 60px solid transparent; 
-	border-right:30px solid #d40000;
+.arrow-right {	
+	border-left: 25px solid #d40000;
+}
+
+.arrow-left { 
+	border-right:25px solid #d40000;
+}
+
+@-webkit-keyframes flash {
+  0%   { opacity: 0.05; }
+  25% { opacity: 0.25; }
+  50%   { opacity: 1; }
+  75% { opacity: 0.25; }
+  100% { opacity: 0.05; }
+}
+@keyframes flash {
+  0%   { opacity: 0.05; }
+  25% { opacity: 0.25; }
+  50%   { opacity: 1; }
+  75% { opacity: 0.25; }
+  100% { opacity: 0.05; }
 }

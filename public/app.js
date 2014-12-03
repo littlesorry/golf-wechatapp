@@ -746,7 +746,7 @@
 
 	game.displayPage7Result = function(bag, data) {
 		if(this.cityResultPage == null) {
-			this.cityResultPage = buildBackground("cityResultPage", pickPage(bag, data));
+			this.cityResultPage = buildBackground("cityResultPage", pickPage(bag, data || {}));
 
 			var resultQueryBtn = new Q.Button({id:"resultQueryBtn", image: ns.R.getImage("button")});
 			resultQueryBtn.setUpState({rect:[0,0,390,79]});
