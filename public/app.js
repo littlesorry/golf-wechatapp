@@ -315,15 +315,15 @@
 						position:"absolute",
 						top : (game.height * 0.678) + "px",
 						left: (game.width * 0.573) + "px",
-						width: (game.width * 0.183)+ "px",
-						height: (game.height * 0.03) + "px",
+						width: (game.width * 0.175)+ "px",
+						height: (game.height * 0.029) + "px",
 						background: "transparent",
 						border: "none",
 						"text-align": "right",
-						"padding-right": "8px",
+						"padding-right": "6px",
 						"color": "#333",
 						"z-index": 9999,
-						"font-size": "18px",
+						"font-size": "16px",
 						"letter-spacing": "3px"
 					}
 			});
