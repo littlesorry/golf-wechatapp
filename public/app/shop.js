@@ -4,11 +4,11 @@
 	var events = Q.supportTouch ? ["touchstart", "touchmove", "touchend"] : ["mousedown", "mousemove", "mouseup"];
 
 	var yArchors = [
-		0.558,
-		0.640,
-		0.720,
-		0.809,
-		0.895
+		0.557,
+		0.639,
+		0.719,
+		0.810,
+		0.896
 	];
 
 	function initLocationPosition(text, idx) {
@@ -18,7 +18,7 @@
 
 	function initRemainingPosition(text, idx) {
 		text.x = ns.game.width * 0.65;
-		text.y = ns.game.height * (yArchors[idx%5] + 0.011);
+		text.y = ns.game.height * (yArchors[idx%5] + 0.012);
 	}
 
 	function renderShopText(data, page) {
