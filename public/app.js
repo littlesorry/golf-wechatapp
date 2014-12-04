@@ -417,6 +417,7 @@
 		ns.history.push("displayPage2", "#displayPage2");
 	};
 
+	var inDraw = false;
 	game.displayPage3 = function(bag) {	
 		if(this.openPage == null) {
 			this.openPage = buildBackground("openPage", "page3");
@@ -429,23 +430,27 @@
 			openBtn.scaleY = this.openPage.scaleY;
 			openBtn.x = this.width * 0.2;
 			openBtn.y = this.height * 0.499;
-			openBtn.one(game.EVENTS.TAP, function(e) {
-				NProgress.start();
-				$.get("/draw", {
-					isMember: game.data.isMember,
-					age: $("#ageInput").val()
-				}).done(function(resp) {
-					NProgress.done();
-					if (resp.status === 'ok') {
-						if (resp.type === 'gold') {
-							game.displayPage4(resp.data);
+			openBtn.on(game.EVENTS.TAP, function(e) {
+				if (!inDraw) {
+					inDraw = true;
+					NProgress.start();
+					$.get("/draw", {
+						isMember: game.data.isMember,
+						age: $("#ageInput").val()
+					}).done(function(resp) {
+						inDraw = false;
+						NProgress.done();
+						if (resp.status === 'ok') {
+							if (resp.type === 'gold') {
+								game.displayPage4(resp.data);
+							} else {
+								game.displayPage5(resp.data);
+							}
 						} else {
-							game.displayPage5(resp.data);
+							alert("无法领取优惠券！");						
 						}
-					} else {
-						alert("无法领取优惠券！");						
-					}
-				});
+					});
+				}
 			});
 
 			this.openBtn = openBtn;
