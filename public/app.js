@@ -429,11 +429,13 @@
 			openBtn.scaleY = this.openPage.scaleY;
 			openBtn.x = this.width * 0.2;
 			openBtn.y = this.height * 0.499;
-			openBtn.on(game.EVENTS.TAP, function(e) {
+			openBtn.one(game.EVENTS.TAP, function(e) {
+				NProgress.start();
 				$.get("/draw", {
 					isMember: game.data.isMember,
 					age: $("#ageInput").val()
 				}).done(function(resp) {
+					NProgress.done();
 					if (resp.status === 'ok') {
 						if (resp.type === 'gold') {
 							game.displayPage4(resp.data);
