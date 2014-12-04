@@ -40,10 +40,10 @@
 			shopText.scaleX = ns.game.cityResultPage.scaleX;
 			shopText.scaleY = ns.game.cityResultPage.scaleY;
 			shopText.textAlign = "start"; 
-			shopText.lineSpacing = 30; 
+			shopText.lineSpacing = 29; 
 			shopText.color = "#fff";
 			shopText.text = data[i].address;
-			shopText.font = "30px 黑体";
+			shopText.font = "29px 黑体";
 			initLocationPosition(shopText, i);
 
 			ns.game.stage.addChild(shopText);
