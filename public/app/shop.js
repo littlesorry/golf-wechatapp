@@ -78,16 +78,17 @@
 	}
 
 	var page = 0;
+	var currentData = [];
 	var shopTexts = [];
 	var shop = ns.shop = {
-		renderShops: function(data) {			
+		renderShops: function(data) {
 			if ($(".arrow").size() === 0) {
 				$("<div class='arrow-right arrow' />").css({
 					top : (game.height * 0.67) + "px",
 					left: (game.width * 0.87) + "px"
 				}).on(events[2], function() {
 					$(this).hide();
-					renderShopText(data, ++page);
+					renderShopText(currentData, ++page);
 				}).appendTo("body");
 
 				$("<div class='arrow-left arrow' />").css({
@@ -95,10 +96,11 @@
 					left: (game.width * 0.07) + "px"
 				}).on(events[2], function() {
 					$(this).hide();
-					renderShopText(data, --page);
+					renderShopText(currentData, --page);
 				}).appendTo("body");
 			}
-			renderShopText(data, page = 0);
+			currentData = data;
+			renderShopText(currentData, page = 0);
 		}
 	};
 
