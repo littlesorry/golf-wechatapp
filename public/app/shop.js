@@ -39,7 +39,7 @@
 			shopText.lineSpacing = 30; 
 			shopText.color = "#fff";
 			shopText.text = data[i].address;
-			shopText.font = "32px 黑体";
+			shopText.font = "30px 黑体";
 			initLocationPosition(shopText, i);
 
 			ns.game.stage.addChild(shopText);
@@ -62,6 +62,7 @@
 				shopTexts.push(remainingText);
 			}
 		}
+		ns.game.stage.step();
 
 		if ((page + 1) * 5 < data.length) {
 			$(".arrow-right").show();
