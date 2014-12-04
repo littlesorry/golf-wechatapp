@@ -28,6 +28,10 @@
 		}
 		shopTexts.length = 0;
 
+		if (!data) {
+			return;
+		}
+
 		// add next batch
 		for (var i = page * 5; i < data.length && i < (page + 1) * 5; i++) {
 			var shopText = new Q.Text({id: "shopText"});
