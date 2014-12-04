@@ -91,6 +91,10 @@
 			return;
 		}
 
+		if ($(".panel").size() > 0) {
+			return;
+		}
+
 		var panel = $(template({"items": items}))
 			.appendTo('body')
 			.one(events[2], "a", function() {
