@@ -835,12 +835,12 @@
 	});
 
 	$(function() {
-		$(document).on("touchmove", function(e) { e.preventDefault() });
-		$(document).on("touchmove", ".fix", function(e) { e.preventDefault() });
-		$(document).on("touchmove", ".panel", function(e) { e.stopPropagation() });
+		$(document).on("touchmove", function(e) { e.preventDefault(); });
+		$(document).on("touchmove", ".fix", function(e) { e.preventDefault(); });
+		$(document).on("touchmove", ".panel", function(e) { e.stopPropagation(); });
 
-		bouncefix.add('fix');
-		bouncefix.remove('panel');
+		// bouncefix.add('fix');
+		// bouncefix.remove('panel');
 	});
 
 })();
