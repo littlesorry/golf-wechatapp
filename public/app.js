@@ -840,6 +840,7 @@
 		$(document).on("touchmove", ".panel", function(e) { e.stopPropagation() });
 
 		bouncefix.add('fix');
+		bouncefix.remove('panel');
 	});
 
 })();
