@@ -329,7 +329,7 @@
 						"padding-right": "6px",
 						"color": "#333",
 						"z-index": 9999,
-						"font-size": "16px",
+						"font-size": Q.isAndroid ? "16px" : "14px",
 						"letter-spacing": "3px"
 					}
 			});
