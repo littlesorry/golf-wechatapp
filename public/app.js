@@ -836,7 +836,7 @@
 
 	$(function() {
 		$(document).on("touchmove", function(e) { e.preventDefault() });
-		// $(document).on("touchmove", function(e) { e.stopPropagation() });
+		$(document).on("touchmove", ".panel", function(e) { e.stopPropagation() });
 	});
 
 })();
