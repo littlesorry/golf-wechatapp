@@ -133,10 +133,12 @@
 			chooseBtn.x = this.width * 0.145;
 			chooseBtn.y = this.height * 0.658;
 			chooseBtn.on(game.EVENTS.TAP, function(e) {
+				NProgress.start();
 				$.get("/draw/count", {
 					"_": Math.random()
 				})
 				.done(function(resp) {
+					NProgress.done();
 					if(resp.count === 0) {
 						game.displayPage1();
 					} else {
@@ -156,10 +158,12 @@
 			exchangeBtn.x = this.width * 0.145;
 			exchangeBtn.y = this.height * 0.734;
 			exchangeBtn.on(game.EVENTS.TAP, function(e) {
+				NProgress.start();
 				$.get("/draw/count", {
 					"_": Math.random()
 				})
 				.done(function(resp) {
+					NProgress.done();
 					if(resp.count === 0) {
 						alert("请先选取福袋！");
 					} else {
@@ -193,10 +197,12 @@
 			baglistBtn.x = this.width * 0.5;
 			baglistBtn.y = this.height * 0.93;
 			baglistBtn.on(game.EVENTS.TAP, function(e) {
+				NProgress.start();
 				$.get("/draw/count", {
 					"_": Math.random()
 				})
 				.done(function(resp) {
+					NProgress.done();
 					if(resp.count === 0) {
 						alert("请先选取福袋！");
 					} else if (resp.count === 2) {
