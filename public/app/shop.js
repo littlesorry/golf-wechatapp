@@ -6,7 +6,7 @@
 	var yArchors = [
 		0.557,
 		0.639,
-		0.719,
+		0.721,
 		0.810,
 		0.896
 	];
@@ -17,7 +17,7 @@
 	}
 
 	function initRemainingPosition(text, idx) {
-		text.x = ns.game.width * 0.8;
+		text.x = ns.game.width * 0.78;
 		text.y = ns.game.height * (yArchors[idx%5] + 0.012);
 	}
 
