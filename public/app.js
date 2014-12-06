@@ -560,7 +560,7 @@
 			bagCode.height = 52;
 			bagCode.scaleX = this.goldPrizePage.scaleX;
 			bagCode.scaleY = this.goldPrizePage.scaleY;
-			bagCode.x = this.width * 0.366;
+			bagCode.x = this.width * 0.45;
 			bagCode.y = this.height * 0.388;
 			bagCode.textAlign = "start"; 
 			bagCode.lineSpacing = 35; 
@@ -575,7 +575,7 @@
 			couponCode.height = 52;
 			couponCode.scaleX = this.goldPrizePage.scaleX;
 			couponCode.scaleY = this.goldPrizePage.scaleY;
-			couponCode.x = this.width * 0.42;
+			couponCode.x = this.width * 0.45;
 			couponCode.y = this.height * 0.448;
 			couponCode.textAlign = "start"; 
 			couponCode.lineSpacing = 35; 
@@ -657,7 +657,7 @@
 			silverCode.height = 52;
 			silverCode.scaleX = this.silverPrizePage.scaleX;
 			silverCode.scaleY = this.silverPrizePage.scaleY;
-			silverCode.x = this.width * 0.427;
+			silverCode.x = this.width * 0.45;
 			silverCode.y = this.height * 0.385;
 			silverCode.textAlign = "start"; 
 			silverCode.lineSpacing = 35; 
