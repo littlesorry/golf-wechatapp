@@ -205,10 +205,8 @@
 					NProgress.done();
 					if(resp.count === 0) {
 						alert("请先选取福袋！");
-					} else if (resp.count === 2) {
-						game.displayPage4(resp.data);
 					} else {
-						game.displayPage5(resp.data);
+						game.displayPage3_2(resp);
 					}
 				});
 			});
@@ -477,6 +475,46 @@
 		this.stage.step();
 
 		ns.history.push("displayPage3", "#displayPage3");
+	};
+
+	game.displayPage3_2 = function(resp) {
+		if(this.reopenPage == null) {
+			this.reopenPage = buildBackground("reopenPage", "page3");
+
+			var reopenBtn = new Q.Button({id:"reopenBtn", image: ns.R.getImage("button")});
+			reopenBtn.setUpState({rect:[0,0,390,79]});
+			reopenBtn.width= 390;
+			reopenBtn.height = 79;
+			reopenBtn.scaleX = this.reopenPage.scaleX;
+			reopenBtn.scaleY = this.reopenPage.scaleY;
+			reopenBtn.x = this.width * 0.2;
+			reopenBtn.y = this.height * 0.499;
+			reopenBtn.on(game.EVENTS.TAP, function(e) {
+				if (resp.count === 2) {
+					game.displayPage4(resp.data);
+				} else {
+					game.displayPage5(resp.data);
+				}
+			});
+
+			this.reopenBtn = reopenBtn;
+		}
+
+		var repickBag = new Q.Bitmap({"id": "repickBag", "image": ns.R.getImage('pickedRed')});
+        repickBag.scaleX = this.reopenPage.scaleX;
+        repickBag.scaleY = this.reopenPage.scaleY;
+        repickBag.x = this.width * 0.25;
+        repickBag.y = this.height * 0.17;
+
+        this.repickBag = repickBag;
+		
+		this.stage.addChild(
+					this.reopenPage
+					, this.repickBag
+					, this.reopenBtn);
+		this.stage.step();
+
+		ns.history.push("displayPage3_2", "#displayPage3_2");
 	};
 
 	function selectText(target) {
