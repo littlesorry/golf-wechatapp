@@ -142,7 +142,7 @@
 					if(resp.count === 0) {
 						game.displayPage1();
 					} else {
-						alert("已经领取福袋，请去兑换页面！");
+						alert("您已经领取福袋，快去柜台换领吧！");
 					}
 				});
 			});
