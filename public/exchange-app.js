@@ -142,14 +142,9 @@
 					shopCode: $("#shopNoInput").val()
 				}).done(function(resp) {
 					NProgress.done();
-					if (resp.status === 'error') {
-						alert(resp.message);
-						return;
-					} else {
-						$("#exchangeInput").hide();
-						$("#shopNoInput").hide();
-						game.displayPage17(resp.status);
-					}
+					$("#exchangeInput").hide();
+					$("#shopNoInput").hide();
+					game.displayPage17(resp.status);
 				}) ;
 			});
 
@@ -221,9 +216,11 @@
 	};
 
 
+	var lastStatus = null;
 	game.displayPage17 = function(status) {
+		lastStatus = status;
 		if(this.resultPage == null) {
-			this.resultPage = buildBackground("resultPage", status === 'fail' ? "page17_2" : "page17");
+			this.resultPage = buildBackground("resultPage", (status === 'fail' || status === 'error') ? "page17_2" : "page17");
 
 			var goBtn = new Q.Button({id:"goBtn", image: ns.R.getImage("button")});
 			goBtn.setUpState({rect:[0,0,450,79]});
@@ -234,7 +231,11 @@
 			goBtn.x = this.width * 0.145;
 			goBtn.y = this.height * 0.745;
 			goBtn.on(game.EVENTS.TAP, function(e) {
-				game.displayPage18();
+				if (lastStatus === 'fail' || lastStatus === 'error') {
+					game.displayPage16();
+				} else {
+					game.displayPage18();
+				}
 			});
 
 			this.goBtn = goBtn;
