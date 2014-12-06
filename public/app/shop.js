@@ -17,7 +17,7 @@
 	}
 
 	function initRemainingPosition(text, idx) {
-		text.x = ns.game.width * 0.65;
+		text.x = ns.game.width * 0.8;
 		text.y = ns.game.height * (yArchors[idx%5] + 0.012);
 	}
 
@@ -35,7 +35,7 @@
 		// add next batch
 		for (var i = page * 5; i < data.length && i < (page + 1) * 5; i++) {
 			var shopText = new Q.Text({id: "shopText"});
-			shopText.width = ns.game.state === "silver" ? 530 : 235;
+			shopText.width = ns.game.state === "silver" ? 530 : 375;
 			shopText.height = 80;
 			shopText.scaleX = ns.game.cityResultPage.scaleX;
 			shopText.scaleY = ns.game.cityResultPage.scaleY;
