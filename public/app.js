@@ -354,13 +354,13 @@
 			this.pickPage = buildBackground("pickPage", "page2");
 
 			var pickBtnRed1 = new Q.Button({id:"pickBtnRed1", image: ns.R.getImage("pickBagRed1")});
-			pickBtnRed1.setUpState({rect:[0,0,255,305]});
-			pickBtnRed1.width= 255;
-			pickBtnRed1.height = 305;
+			pickBtnRed1.setUpState({rect:[0,0,225,269]});
+			pickBtnRed1.width= 225;
+			pickBtnRed1.height = 269;
 			pickBtnRed1.scaleX = this.pickPage.scaleX;
 			pickBtnRed1.scaleY = this.pickPage.scaleY;
-			pickBtnRed1.x = this.width * 0.11;
-			pickBtnRed1.y = this.height * 0.32;
+			pickBtnRed1.x = this.width * 0.13;
+			pickBtnRed1.y = this.height * 0.33;
 			pickBtnRed1.on(game.EVENTS.TAP, function(e) {
 				game.displayPage3('red');
 			});
