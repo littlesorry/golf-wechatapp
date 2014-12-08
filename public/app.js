@@ -881,11 +881,16 @@
 		//     if(!$('.panel').has($(e.target)).length)
 		//         e.preventDefault();
 		// });
-		$(document).on('touchmove', function(e) {
-		    if (!$(e.target).parents('.panel')[0]) {
-		        e.preventDefault();
-		    }
-		});
+		// $(document).on('touchmove', function(e) {
+		//     if (!$(e.target).parents('.panel')[0]) {
+		//         e.preventDefault();
+		//     }
+		// });
+
+		var handleMove = function (e) {
+		    if($(e.target).closest('.panel').length == 0) { e.preventDefault(); }
+		}
+		document.addEventListener('touchmove', handleMove, true);
 	});
 
 })();
