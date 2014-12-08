@@ -877,8 +877,10 @@
 		$(document).on("touchmove", ".fix", function(e) { e.preventDefault(); });
 		$(document).on("touchmove", ".panel", function(e) { e.stopPropagation(); });
 
-		// bouncefix.add('fix');
-		// bouncefix.remove('panel');
+		$('.fix').on('touchmove',function(e){
+		    if(!$('.panel').has($(e.target)).length)
+		        e.preventDefault();
+		});
 	});
 
 })();
