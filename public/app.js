@@ -887,10 +887,10 @@
 		//     }
 		// });
 
-		var handleMove = function (e) {
-		    if($(e.target).closest('.panel').length == 0) { e.preventDefault(); }
-		}
-		document.addEventListener('touchmove', handleMove, true);
+		// var handleMove = function (e) {
+		//     if($(e.target).closest('.panel').length == 0) { e.preventDefault(); }
+		// }
+		// document.addEventListener('touchmove', handleMove, true);
 	});
 
 })();

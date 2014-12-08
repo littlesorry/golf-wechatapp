@@ -76,12 +76,13 @@
 
 	var events = Q.supportTouch ? ["touchstart", "touchmove", "touchend"] : ["mousedown", "mousemove", "mouseup"];
 
-	var panelTpl = "<div id='panel' class='panel animated zoomIn'>"
+	var panelTpl = "<div id='panel' class='panel clearfix animated zoomIn'>"
 					+ "{{#each items}}"
 					+ "<div class='item'><a>"
 					+ "{{this}}"
 					+ "</a></div>"
 					+ "{{/each}}"
+					+ "<div></div>"
 					+ "</div>";
 	var template = Handlebars.compile(panelTpl);
 
@@ -95,8 +96,9 @@
 			return;
 		}
 
-		var panel = $(template({"items": items}))
-			.appendTo('body')
+		var panel = $(template({"items": items}));
+		if (Q.isAndroid) {
+			panel.appendTo('body')
 			.one(events[2], "a", function() {
 				panel.addClass("zoomOut");
 				panel.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
@@ -104,6 +106,34 @@
 				});
 				callback && callback($(this).text());
 			});
+		} else {
+			panel.css({
+				"left": "0",
+				"top": "0",
+				"width": "100%",
+				"box-sizing": "border-box",
+				"height": "initial",
+				"overflow": "hidden",
+				"min-height": "100%"
+			}).appendTo('body');
+
+			$("a", panel).tappable({
+				callback: function() {
+					callback && callback($(this).text());
+					panel.animate({
+						top: "-100%",
+						opacity: 0
+					}, {
+						duration: 300,
+						complete: function() {
+							panel.remove();
+						}
+					});
+				},
+				touchDelay: 200,
+				cancelOnMove: true
+			});
+		}
 	};
 
 	var city = ns.city = {
