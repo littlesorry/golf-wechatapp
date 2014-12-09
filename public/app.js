@@ -102,6 +102,11 @@
 
 		em.registerStage(this.stage, this.events);
 		
+		ns.history.root("displayPage0");
+		ns.history.cleanup = function() {
+			game.stage.removeChildById("pickedBag");
+		};
+		ns.history.push("displayPage0", "#displayPage0");
 		this.displayPage0();
 	};
 
@@ -140,6 +145,7 @@
 				.done(function(resp) {
 					NProgress.done();
 					if(resp.count === 0) {
+						ns.history.push("displayPage1", "#displayPage1");
 						game.displayPage1();
 					} else {
 						alert("您已经领取福袋，快去柜台换领吧！");
@@ -206,6 +212,7 @@
 					if(resp.count === 0) {
 						alert("请先选取福袋！");
 					} else {
+						ns.history.push("displayPage3_2", "#displayPage3_2");
 						game.displayPage3_2(resp);
 					}
 				});
@@ -222,7 +229,6 @@
 					, this.instructionBtn
 					, this.baglistBtn);
 		this.stage.step();
-    	ns.history.push("displayPage0", "#displayPage0");
 	};
 
 	game.displayPage1 = function() {
@@ -241,6 +247,7 @@
 			playBtn.on(game.EVENTS.TAP, function(e) {
 				$("#ageInput").hide();
 				game.data.age = $("#ageInput").val();
+				ns.history.push("displayPage2", "#displayPage2");
 				game.displayPage2();
 			});
 
@@ -315,6 +322,7 @@
 					id:"ageInput"
 					, type: "number"
 					, maxlength: 3
+					, className: "ui-item"
 					, style : {
 						position:"absolute",
 						top : (game.height * 0.678) + "px",
@@ -342,7 +350,6 @@
 			}, 800);
 		}
 
-    	ns.history.push("displayPage1", "#displayPage1");
 	};
 
 	game.displayPage1.cleanup = function() {
@@ -362,6 +369,7 @@
 			pickBtnRed1.x = this.width * 0.13;
 			pickBtnRed1.y = this.height * 0.33;
 			pickBtnRed1.on(game.EVENTS.TAP, function(e) {
+				ns.history.push("displayPage3", "#displayPage3");
 				game.displayPage3('red');
 			});
 
@@ -376,6 +384,7 @@
 			pickBtnBlue1.x = this.width * 0.52;
 			pickBtnBlue1.y = this.height * 0.32;
 			pickBtnBlue1.on(game.EVENTS.TAP, function(e) {
+				ns.history.push("displayPage3", "#displayPage3");
 				game.displayPage3();
 			});
 
@@ -390,6 +399,7 @@
 			pickBtnRed2.x = this.width * 0.52;
 			pickBtnRed2.y = this.height * 0.585;
 			pickBtnRed2.on(game.EVENTS.TAP, function(e) {
+				ns.history.push("displayPage3", "#displayPage3");
 				game.displayPage3('red');
 			});
 
@@ -404,6 +414,7 @@
 			pickBtnBlue2.x = this.width * 0.09;
 			pickBtnBlue2.y = this.height * 0.585;
 			pickBtnBlue2.on(game.EVENTS.TAP, function(e) {
+				ns.history.push("displayPage3", "#displayPage3");
 				game.displayPage3();
 			});
 
@@ -417,8 +428,6 @@
 					, this.pickBtnBlue1
 					, this.pickBtnBlue2);
 		this.stage.step();
-
-		ns.history.push("displayPage2", "#displayPage2");
 	};
 
 	var inDraw = false;
@@ -446,8 +455,10 @@
 						NProgress.done();
 						if (resp.status === 'ok') {
 							if (resp.type === 'gold') {
+								ns.history.replace("displayPage4", "#displayPage4");
 								game.displayPage4(resp.data);
 							} else {
+								ns.history.replace("displayPage5", "#displayPage5");
 								game.displayPage5(resp.data);
 							}
 						} else {
@@ -473,8 +484,6 @@
 					, this.pickedBag
 					, this.openBtn);
 		this.stage.step();
-
-		ns.history.push("displayPage3", "#displayPage3");
 	};
 
 	game.displayPage3_2 = function(resp) {
@@ -491,8 +500,10 @@
 			reopenBtn.y = this.height * 0.499;
 			reopenBtn.on(game.EVENTS.TAP, function(e) {
 				if (resp.count === 2) {
+					ns.history.replace("displayPage4", "#displayPage4");
 					game.displayPage4(resp.data);
 				} else {
+					ns.history.replace("displayPage5", "#displayPage5");
 					game.displayPage5(resp.data);
 				}
 			});
@@ -513,26 +524,9 @@
 					, this.repickBag
 					, this.reopenBtn);
 		this.stage.step();
-
-		ns.history.push("displayPage3_2", "#displayPage3_2");
 	};
 
 	function selectText(target) {
-		// alert("selectText");
-		// try {
-		// 	var sel = window.getSelection(),
-	 //    	range = document.createRange();
-
-	 //    	range.setStart($(target)[0].firstChild, 0);
-		// 	range.setEnd($(target)[0].firstChild, $(target).text().length);
-
-	 //    	sel.removeAllRanges();
-		// 	sel.addRange(range);
-
-		// 	alert(range.text);
-		// } catch (err) {
-		// 	alert(err);
-		// }
 	}
 
 	game.displayPage4 = function(data) {
@@ -550,6 +544,7 @@
 			reserveBtn.x = this.width * 0.18;
 			reserveBtn.y = this.height * 0.568;
 			reserveBtn.on(game.EVENTS.TAP, function(e) {
+				ns.history.push("displayPage7", "#displayPage7");
 				game.displayPage7('gold');
 			});
 
@@ -612,6 +607,12 @@
 			});
 
 			this.copyCouponCodeBtn = copyCouponCodeBtn;
+
+			setTimeout(function() {
+				game.bagCode.text = data.bag;
+				game.couponCode.text = data.coupon;
+				NProgress.done();
+			}, 1500);
 		}
 		
 		this.stage.addChild(
@@ -622,14 +623,6 @@
 					, this.copyBagCodeBtn
 					, this.copyCouponCodeBtn);
 		this.stage.step();
-
-		setTimeout(function() {
-			game.bagCode.text = data.bag;
-			game.couponCode.text = data.coupon;
-			NProgress.done();
-		}, 2200);
-
-		ns.history.push("displayPage4", "#displayPage4");
 	};
 
 	game.displayPage5 = function(data) {
@@ -647,6 +640,7 @@
 			openBtn2.x = this.width * 0.176;
 			openBtn2.y = this.height * 0.57;
 			openBtn2.on(game.EVENTS.TAP, function(e) {
+				ns.history.push("displayPage7", "#displayPage7");
 				game.displayPage7('silver');
 			});
 
@@ -680,6 +674,11 @@
 			});
 
 			this.copySilverCodeBtn = copySilverCodeBtn;
+
+			setTimeout(function() {
+				game.silverCode.text = data.coupon;
+				NProgress.done();
+			}, 1500);
 		};
 		
 		this.stage.addChild(
@@ -688,13 +687,6 @@
 					, this.openBtn2
 					, this.copySilverCodeBtn);
 		this.stage.step();
-
-		setTimeout(function() {
-			game.silverCode.text = data.coupon;
-			NProgress.done();
-		}, 2200);
-
-		ns.history.push("displayPage5", "#displayPage5");
 	};
 
 	function pickPrePage(bag) {
@@ -722,6 +714,7 @@
 			"_": Math.random()
 		}).done(function(resp) {
 			NProgress.done();
+			ns.history.push("displayPage7Result", "#displayPage7Result");
 			game.displayPage7Result(bag, resp.data);
 		});
 	};
@@ -794,8 +787,6 @@
 					, this.cityText
 					, this.queryBtn);
 		this.stage.step();
-
-		ns.history.push("displayPage7", "#displayPage7");
 	};
 
 	game.displayPage7Result = function(bag, data) {
@@ -865,32 +856,10 @@
 					, this.resultQueryBtn);
 		ns.shop.renderShops(data);
 		this.stage.step();
-		ns.history.push("displayPage7Result", "#displayPage7Result");
 	};
 
 	$(function() {
 		game.bootstrap();
-	});
-
-	$(function() {
-		// $(document).on("touchmove", function(e) { e.preventDefault(); });
-		// $(document).on("touchmove", ".fix", function(e) { e.preventDefault(); });
-		// $(document).on("touchmove", ".panel", function(e) { e.stopPropagation(); });
-
-		// $('.fix').on('touchmove',function(e){
-		//     if(!$('.panel').has($(e.target)).length)
-		//         e.preventDefault();
-		// });
-		// $(document).on('touchmove', function(e) {
-		//     if (!$(e.target).parents('.panel')[0]) {
-		//         e.preventDefault();
-		//     }
-		// });
-
-		// var handleMove = function (e) {
-		//     if($(e.target).closest('.panel').length == 0) { e.preventDefault(); }
-		// }
-		// document.addEventListener('touchmove', handleMove, true);
 	});
 
 })();

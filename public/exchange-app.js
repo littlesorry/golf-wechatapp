@@ -99,7 +99,9 @@
 		};
 
 		em.registerStage(this.stage, this.events);
-		
+
+		ns.history.root("displayPage16");
+		ns.history.push("displayPage16", "#displayPage16");
 		this.displayPage16();
 	};
 
@@ -149,7 +151,8 @@
 					}
 
 					$("#exchangeInput").hide();
-					$("#shopNoInput").hide();
+					$("#shopNoInput").hide();		
+					ns.history.push("displayPage17", "#displayPage17");
 					game.displayPage17(resp.status);
 				}) ;
 			});
@@ -168,6 +171,7 @@
 				, {
 					id:"exchangeInput"
 					, type: "text"
+					, className: "ui-item"
 					, style : {
 						position:"absolute",
 						top : (game.height * 0.342) + "px",
@@ -189,6 +193,7 @@
 				, {
 					id:"shopNoInput"
 					, type: "text"
+					, className: "ui-item"
 					, style : {
 						position:"absolute",
 						top : (game.height * 0.478) + "px",
@@ -218,7 +223,6 @@
 			}, 800);
 		}
 
-		ns.history.push("displayPage16", "#displayPage16");
 	};
 
 
@@ -238,8 +242,10 @@
 			goBtn.y = this.height * 0.745;
 			goBtn.on(game.EVENTS.TAP, function(e) {
 				if (lastStatus === 'fail' || lastStatus === 'error') {
-					game.displayPage16();
+					// game.displayPage16();
+					window.history.back();
 				} else {
+					ns.history.push("displayPage18", "#displayPage18");
 					game.displayPage18();
 				}
 			});
@@ -252,7 +258,6 @@
 					, this.goBtn);
 
 		this.stage.step();
-		ns.history.push("displayPage17", "#displayPage17");
 	};
 
 	function validateRegistry(name, phone, personId, email) {
@@ -302,6 +307,8 @@
 					$("#emailInput").hide();
 
 					NProgress.done();
+
+					ns.history.push("displayPage19", "#displayPage19");
 					game.displayPage19();
 				}) ;
 			});
@@ -319,6 +326,7 @@
 				, {
 					id:"nameInput"
 					, type: "text"
+					, className: "ui-item"
 					, style : {
 						position:"absolute",
 						top : (game.height * 0.396) + "px",
@@ -340,6 +348,7 @@
 				, {
 					id:"mobileInput"
 					, type: "text"
+					, className: "ui-item"
 					, style : {
 						position:"absolute",
 						top : (game.height * 0.455) + "px",
@@ -361,6 +370,7 @@
 				, {
 					id:"idInput"
 					, type: "text"
+					, className: "ui-item"
 					, style : {
 						position:"absolute",
 						top : (game.height * 0.517) + "px",
@@ -382,6 +392,7 @@
 				, {
 					id:"emailInput"
 					, type: "text"
+					, className: "ui-item"
 					, style : {
 						position:"absolute",
 						top : (game.height * 0.574) + "px",
@@ -416,7 +427,6 @@
 			}, 800);
 		}
 
-		ns.history.push("displayPage18", "#displayPage18");
 	};
 
 	game.displayPage19 = function() {
@@ -427,8 +437,6 @@
 		this.stage.addChild(
 					this.postSubmitPage);
 		this.stage.step();
-
-		ns.history.push("displayPage19", "#displayPage19");
 	};
 
 	$(function() {

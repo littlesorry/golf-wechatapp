@@ -5,19 +5,36 @@
 		states: []
 	};
 
+	var root;
+
 	history.push = function(state, url) {
-		return;
 		if (history.states[history.states.length - 1] !== state) {
 			window.history.pushState(state, "", url);
 			this.states.push(state);
 		}
 	};
 
+	history.replace = function(state, url) {
+		window.history.replaceState(state, "", url);
+		this.states.length = 0;
+		this.states.push(state);
+	};
+
+	history.root = function(r) {
+		root = r;
+	};
+
+	history.cleanup
+
 	window.onpopstate = function(event) {
-		var last = history.states.pop();
-		ns.game[last] && typeof ns.game[last].cleanup === 'function' && ns.game[last].cleanup.call();
+		$(".ui-item").hide();
+		typeof history.cleanup === 'function' && history.cleanup.apply(ns.game);
 
 		var current = event.state;
-		typeof ns.game[current] === 'function' && ns.game[current].apply(ns.game);
+		if (current) {
+			typeof ns.game[current] === 'function' && ns.game[current].apply(ns.game);
+		} else {
+			ns.game[root].apply(ns.game);
+		}
 	};
 })();
