@@ -1,7 +1,7 @@
 (function () {
 	var ns = Q.use("bag");
 
-	var R = ns.R = {};
+	var R = ns.R = {images: {}};
 
 	R.assets = [
 		{id: "button", width: 423, src: "assets/button.png"},
@@ -29,13 +29,49 @@
 	];
 
 	R.init = function(images) {
-		this.images = images;
-
 		var loader = new Q.ImageLoader();
 		loader.addEventListener("complete", function(e) {
 			console.log(e);
 		});
 		loader.load(R.backgroundAssets);
+	};
+
+	function pick(id) {
+		for (var i in R.assets) {
+			if (R.assets[i].id === id) {
+				return R.assets[i];
+			}
+		}
+	}
+
+	R.require = function() {
+		var toLoad = [];
+		var callback = arguments[arguments.length - 1];
+		var imgs = Array.prototype.slice.call(arguments, 0, arguments.length - 1);
+		for (var i in imgs) {
+			var img = imgs[i];
+
+			if (!this.images[img]) {
+				var picked = pick(img);
+				picked && (toLoad.push(picked));
+			}
+		}
+
+		if (toLoad.length > 0) {
+			NProgress.start();
+			var loader = new Q.ImageLoader();
+			loader.addEventListener("complete", function(e) {
+				for (var i in e.images) {
+					R.images[i] = e.images[i];
+				}
+
+				NProgress.done();
+				callback();
+			});
+			loader.load(toLoad);
+		} else {
+			callback();
+		}
 	};
 
 	R.getImage = function(id) {
@@ -44,6 +80,6 @@
 		} catch (e) {
 			alert(e);
 		}
-	}
+	};
 
 })();
