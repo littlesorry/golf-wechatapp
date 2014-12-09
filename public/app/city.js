@@ -120,15 +120,7 @@
 			$("a", panel).tappable({
 				callback: function() {
 					callback && callback($(this).text());
-					panel.animate({
-						top: "-100%",
-						opacity: 0
-					}, {
-						duration: 300,
-						complete: function() {
-							panel.remove();
-						}
-					});
+					panel.remove();
 				},
 				touchDelay: 200,
 				cancelOnMove: true
