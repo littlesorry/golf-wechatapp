@@ -142,6 +142,12 @@
 					shopCode: $("#shopNoInput").val()
 				}).done(function(resp) {
 					NProgress.done();
+
+					if (resp.status === "fail: openId not matched") {
+						alert("串码与微信号不匹配！");
+						return;
+					}
+
 					$("#exchangeInput").hide();
 					$("#shopNoInput").hide();
 					game.displayPage17(resp.status);
@@ -255,9 +261,6 @@
 		}
 		if (!phone || phone.length === 0) {
 			return "请填写手机号！";
-		}
-		if (!personId || personId.length === 0) {
-			return "请填写身份证号！";
 		}
 
 		if ( email && email.trim() !== "" && !/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
