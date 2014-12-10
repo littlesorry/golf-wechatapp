@@ -2,12 +2,15 @@
 	var ns = Q.use("bag");
 
 	var history = ns.history = {
-		states: []
+		states: [],
+		cleanup: null,
+		disabled: false
 	};
 
 	var root;
 
 	history.push = function(state, url) {
+		if (this.disabled) return;
 		if (history.states[history.states.length - 1] !== state) {
 			window.history.pushState(state, "", url);
 			this.states.push(state);
@@ -23,8 +26,6 @@
 	history.root = function(r) {
 		root = r;
 	};
-
-	history.cleanup
 
 	window.onpopstate = function(event) {
 		$(".ui-item").hide();

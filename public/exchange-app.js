@@ -100,6 +100,7 @@
 
 		em.registerStage(this.stage, this.events);
 
+		ns.history.disabled = true;
 		ns.history.root("displayPage16");
 		ns.history.push("displayPage16", "#displayPage16");
 		this.displayPage16();
