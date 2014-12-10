@@ -87,7 +87,7 @@
 	var shop = ns.shop = {
 		renderShops: function(data) {
 			if ($(".arrow").size() === 0) {
-				$("<div class='arrow-right arrow' />").css({
+				$("<div class='arrow-right arrow ui-item' />").css({
 					top : (game.height * 0.67) + "px",
 					left: (game.width * 0.87) + "px"
 				}).on(events[2], function() {
@@ -95,7 +95,7 @@
 					renderShopText(currentData, ++page);
 				}).appendTo("body");
 
-				$("<div class='arrow-left arrow' />").css({
+				$("<div class='arrow-left arrow ui-item' />").css({
 					top : (game.height * 0.67) + "px",
 					left: (game.width * 0.07) + "px"
 				}).on(events[2], function() {
