@@ -15,8 +15,8 @@
             "appId": "",
             "imgUrl" : imgUrl,
             "link" : shareLink,
-            "desc" : descContent,
-            "title" : ""
+            "desc" : "高夫2015开运“游”礼",
+            "title" : "高夫2015开运“游”礼"
         };
         
         var callbacks = {
@@ -27,9 +27,6 @@
             fail : function(resp) {
             },
             confirm : function(resp) {
-            	if (ns.game.state === 'do_share') {
-            		ns.game.state = 'complete';
-            	}
             },
             all : function(resp,shareTo) {
             }
