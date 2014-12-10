@@ -107,7 +107,7 @@ db.shops.insert({state: '山东', city: '蓬莱', code:'GYTA6', address:'蓬莱�
 db.shops.insert({state: '山东', city: '招远', code:'GYTC5', address:'招远市东关街60号', initNumber:24, remainingNumber: 24});
 db.shops.insert({state: '山东', city: '龙口', code:'GYTB9', address:'龙口市黄城南大街78号', initNumber:16, remainingNumber: 16});
 db.shops.insert({state: '山东', city: '烟台', code:'GYTB4', address:'烟台市芝罘区幸福中路17号', initNumber:15, remainingNumber: 15});
-db.shops.insert({state: '山东', city: '海洋', code:'GYTC3', address:'海阳市海阳路145号', initNumber:13, remainingNumber: 13});
+db.shops.insert({state: '山东', city: '海阳', code:'GYTC3', address:'海阳市海阳路145号', initNumber:13, remainingNumber: 13});
 db.shops.insert({state: '山东', city: '烟台', code:'GYTB5', address:'烟台市莱山区观海路277号烟台佳世客一楼', initNumber:12, remainingNumber: 12});
 db.shops.insert({state: '山东', city: '龙口', code:'GYTB8', address:'龙口市黄城南大街42号', initNumber:9, remainingNumber: 9});
 db.shops.insert({state: '重庆', city: '重庆', code:'GCQA5', address:'重庆市大渡口区松青路1011号', initNumber:149, remainingNumber: 149});
