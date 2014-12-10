@@ -353,7 +353,7 @@
 	    			$("body").prepend(ageInput);
 	    			NProgress.done();
 
-	    			if (window.location.hash !== "displayPage1") {
+	    			if (window.location.hash !== "#displayPage1") {
 	    				$("#ageInput").hide();
 	    			}
 				}, 800);
@@ -362,7 +362,7 @@
 					$("#ageInput").show();
 					NProgress.done();
 
-					if (window.location.hash !== "displayPage1") {
+					if (window.location.hash !== "#displayPage1") {
 	    				$("#ageInput").hide();
 	    			}
 				}, 800);
