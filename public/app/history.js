@@ -11,16 +11,12 @@
 
 	history.push = function(state, url) {
 		if (this.disabled) return;
-		if (history.states[history.states.length - 1] !== state) {
-			window.history.pushState(state, "", url);
-			this.states.push(state);
-		}
+		
+		window.history.pushState(state, "", url);
 	};
 
 	history.replace = function(state, url) {
 		window.history.replaceState(state, "", url);
-		this.states.length = 0;
-		this.states.push(state);
 	};
 
 	history.root = function(r) {
