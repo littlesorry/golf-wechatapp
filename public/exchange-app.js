@@ -243,8 +243,8 @@
 			goBtn.y = this.height * 0.745;
 			goBtn.on(game.EVENTS.TAP, function(e) {
 				if (lastStatus === 'fail' || lastStatus === 'error') {
-					// game.displayPage16();
-					window.history.back();
+					game.displayPage16();
+					// window.history.back();
 				} else {
 					ns.history.push("displayPage18", "#displayPage18");
 					game.displayPage18();

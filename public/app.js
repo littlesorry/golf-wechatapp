@@ -473,9 +473,11 @@
 							NProgress.done();
 							if (resp.status === 'ok') {
 								if (resp.type === 'gold') {
+									ns.history.setGoRootStates(["displayPage3", "displayPage2", "displayPage1"]);
 									ns.history.replace("displayPage4", "#displayPage4");
 									game.displayPage4(resp.data);
 								} else {
+									ns.history.setGoRootStates(["displayPage3", "displayPage2", "displayPage1"]);
 									ns.history.replace("displayPage5", "#displayPage5");
 									game.displayPage5(resp.data);
 								}
@@ -637,9 +639,12 @@
 				setTimeout(function() {
 					game.bagCode.text = data.bag;
 					game.couponCode.text = data.coupon;
-					NProgress.done();
 				}, 1500);
 			}
+
+			setTimeout(function() {
+				NProgress.done();
+			}, 1500);
 			
 			this.stage.addChild(
 						this.goldPrizePage
@@ -711,6 +716,10 @@
 				}, 1500);
 			};
 			
+			setTimeout(function() {
+				NProgress.done();
+			}, 1500);
+
 			this.stage.addChild(
 						this.silverPrizePage
 						, this.silverCode
