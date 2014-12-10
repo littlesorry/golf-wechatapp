@@ -531,7 +531,7 @@
 				reopenBtn.x = this.width * 0.2;
 				reopenBtn.y = this.height * 0.499;
 				reopenBtn.on(game.EVENTS.TAP, function(e) {
-					if (resp.count === 2) {
+					if (resp.count > 1) {
 						ns.history.replace("displayPage4", "#displayPage4");
 						game.displayPage4(resp.data);
 					} else {
