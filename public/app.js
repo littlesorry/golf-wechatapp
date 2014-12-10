@@ -352,11 +352,19 @@
 				setTimeout(function() {
 	    			$("body").prepend(ageInput);
 	    			NProgress.done();
+
+	    			if (window.location.hash !== "displayPage1") {
+	    				$("#ageInput").hide();
+	    			}
 				}, 800);
 			} else {
 				setTimeout(function() {
 					$("#ageInput").show();
 					NProgress.done();
+
+					if (window.location.hash !== "displayPage1") {
+	    				$("#ageInput").hide();
+	    			}
 				}, 800);
 			}
 		}
