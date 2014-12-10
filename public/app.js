@@ -330,8 +330,8 @@
 			    var ageInput = Q.createDOM("input"
 					, {
 						id:"ageInput"
-						, type: "number"
-						, maxlength: 3
+						, type: "text"
+						// , maxlength: 3
 						, className: "ui-item"
 						, style : {
 							position:"absolute",
@@ -580,88 +580,65 @@
 				reserveBtn.x = this.width * 0.18;
 				reserveBtn.y = this.height * 0.568;
 				reserveBtn.on(game.EVENTS.TAP, function(e) {
+					game.bagParagraph.hide();
+					game.couponParagraph.hide();
+
 					ns.history.push("displayPage7", "#displayPage7");
 					game.displayPage7('gold');
 				});
 
 				this.reserveBtn = reserveBtn;
 
-				var bagCode = new Q.Text({id: "bagCode"});
-				bagCode.width = 245;
-				bagCode.height = 52;
-				bagCode.scaleX = this.goldPrizePage.scaleX;
-				bagCode.scaleY = this.goldPrizePage.scaleY;
-				bagCode.x = this.width * 0.45;
-				bagCode.y = this.height * 0.388;
-				bagCode.textAlign = "start"; 
-				bagCode.lineSpacing = 35; 
-				bagCode.color = "#fff";
-				// bagCode.text = data.bag;
-				bagCode.font = "40px arial"
+				var bagParagraph = new ns.Paragraph({
+					id: "bagParagraph",
+					style: {
+						x: 0.45,
+						y: 0.395,
+						font: "40px arial",
+						lineHeight: "35px",
+						sX: game.goldPrizePage.scaleX,
+						sY: game.goldPrizePage.scaleY
+					}
+				})
 
-				this.bagCode = bagCode;
+				game.bagParagraph = bagParagraph;
 
-				var couponCode = new Q.Text({id: "couponCode"});
-				couponCode.width = 210;
-				couponCode.height = 52;
-				couponCode.scaleX = this.goldPrizePage.scaleX;
-				couponCode.scaleY = this.goldPrizePage.scaleY;
-				couponCode.x = this.width * 0.45;
-				couponCode.y = this.height * 0.448;
-				couponCode.textAlign = "start"; 
-				couponCode.lineSpacing = 35; 
-				couponCode.color = "#fff";
-				// couponCode.text = data.coupon;
-				couponCode.font = "40px arial"
+				var couponParagraph = new ns.Paragraph({
+					id: "couponParagraph",
+					style: {
+						x: 0.45,
+						y: 0.455,
+						font: "40px arial",
+						lineHeight: "35px",
+						sX: game.goldPrizePage.scaleX,
+						sY: game.goldPrizePage.scaleY
+					}
+				})
 
-				this.couponCode = couponCode;
-
-				var copyBagCodeBtn = new Q.Button({id:"copyBagCodeBtn", image: ns.R.getImage("button")});
-				copyBagCodeBtn.setUpState({rect:[0,0,120,52]});
-				copyBagCodeBtn.width= 120;
-				copyBagCodeBtn.height = 52;
-				copyBagCodeBtn.scaleX = this.goldPrizePage.scaleX;
-				copyBagCodeBtn.scaleY = this.goldPrizePage.scaleY;
-				copyBagCodeBtn.x = this.width * 0.756;
-				copyBagCodeBtn.y = this.height * 0.385;
-				copyBagCodeBtn.on(game.EVENTS.TAP, function(e) {
-					selectText("#" + game.bagCode.id);
-				});
-
-				this.copyBagCodeBtn = copyBagCodeBtn;
-
-				var copyCouponCodeBtn = new Q.Button({id:"copyCouponCodeBtn", image: ns.R.getImage("button")});
-				copyCouponCodeBtn.setUpState({rect:[0,0,120,52]});
-				copyCouponCodeBtn.width= 120;
-				copyCouponCodeBtn.height = 52;
-				copyCouponCodeBtn.scaleX = this.goldPrizePage.scaleX;
-				copyCouponCodeBtn.scaleY = this.goldPrizePage.scaleY;
-				copyCouponCodeBtn.x = this.width * 0.756;
-				copyCouponCodeBtn.y = this.height * 0.447;
-				copyCouponCodeBtn.on(game.EVENTS.TAP, function(e) {
-					selectText("#" + game.couponCode.id);
-				});
-
-				this.copyCouponCodeBtn = copyCouponCodeBtn;
+				game.couponParagraph = couponParagraph;
 
 				setTimeout(function() {
-					game.bagCode.text = data.bag;
-					game.couponCode.text = data.coupon;
-				}, 1500);
+					game.bagParagraph.text(data.bag);
+					game.couponParagraph.text(data.coupon);
+					game.bagParagraph.render().hide();
+					game.couponParagraph.render().hide();
+				}, 900);
 			}
 
 			setTimeout(function() {
+				if (window.location.hash === "#displayPage4") {
+					game.bagParagraph.show();
+					game.couponParagraph.show();
+    			}
+
 				NProgress.done();
-			}, 1500);
+			}, 950);
 			
 			this.stage.addChild(
 						this.goldPrizePage
-						, this.bagCode
-						, this.couponCode
-						, this.reserveBtn
-						, this.copyBagCodeBtn
-						, this.copyCouponCodeBtn);
+						, this.reserveBtn);
 			this.stage.step();
+
 		}
 
 		ns.R.require('page4', 'button', Q.delegate(render4, this));
@@ -683,56 +660,45 @@
 				openBtn2.x = this.width * 0.176;
 				openBtn2.y = this.height * 0.57;
 				openBtn2.on(game.EVENTS.TAP, function(e) {
+					game.silverCodeParagraph.hide();
+
 					ns.history.push("displayPage7", "#displayPage7");
 					game.displayPage7('silver');
 				});
 
 				this.openBtn2 = openBtn2;
 
-				var silverCode = new Q.Text({id: "silverCode"});
-				silverCode.width = 220;
-				silverCode.height = 52;
-				silverCode.scaleX = this.silverPrizePage.scaleX;
-				silverCode.scaleY = this.silverPrizePage.scaleY;
-				silverCode.x = this.width * 0.45;
-				silverCode.y = this.height * 0.385;
-				silverCode.textAlign = "start"; 
-				silverCode.lineSpacing = 35; 
-				silverCode.color = "#fff";
-				// silverCode.text = data.coupon;
-				silverCode.font = "40px arial"
+				var silverCodeParagraph = new ns.Paragraph({
+					id: "silverCodeParagraph",
+					style: {
+						x: 0.45,
+						y: 0.391,
+						font: "40px arial",
+						lineHeight: "35px",
+						sX: game.silverPrizePage.scaleX,
+						sY: game.silverPrizePage.scaleY
+					}
+				})
 
-				this.silverCode = silverCode;
-
-				var copySilverCodeBtn = new Q.Button({id:"copySilverCodeBtn", image: ns.R.getImage("button")});
-				copySilverCodeBtn.setUpState({rect:[0,0,120,52]});
-				copySilverCodeBtn.width= 120;
-				copySilverCodeBtn.height = 52;
-				copySilverCodeBtn.scaleX = this.silverPrizePage.scaleX;
-				copySilverCodeBtn.scaleY = this.silverPrizePage.scaleY;
-				copySilverCodeBtn.x = this.width * 0.756;
-				copySilverCodeBtn.y = this.height * 0.385;
-				copySilverCodeBtn.on(game.EVENTS.TAP, function(e) {
-					selectText("#" + game.silverCode.id);
-				});
-
-				this.copySilverCodeBtn = copySilverCodeBtn;
+				game.silverCodeParagraph = silverCodeParagraph;
 
 				setTimeout(function() {
-					game.silverCode.text = data.coupon;
-					NProgress.done();
-				}, 1500);
+					game.silverCodeParagraph.text(data.coupon);
+					game.silverCodeParagraph.render().hide();
+				}, 900);
 			};
 			
 			setTimeout(function() {
+				if (window.location.hash === "#displayPage5") {
+					game.silverCodeParagraph.show();
+    			}
+
 				NProgress.done();
-			}, 1500);
+			}, 950);
 
 			this.stage.addChild(
 						this.silverPrizePage
-						, this.silverCode
-						, this.openBtn2
-						, this.copySilverCodeBtn);
+						, this.openBtn2);
 			this.stage.step();
 		}
 

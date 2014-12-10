@@ -101,3 +101,11 @@ body, html{height: 100%;}
    height: 0;
    clear: both;
 }
+
+.ui-paragraph {
+	position: absolute;
+	z-index: 99999;
+	margin: 0;
+	transform-origin: left top;
+	-webkit-transform-origin: left top;
+}

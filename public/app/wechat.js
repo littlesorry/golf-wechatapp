@@ -4,7 +4,7 @@
 	var wechat = ns.wechat = {};
 
     var imgUrl = "http://wxkf.gofaner.com/assets/icon.png";
-    var shareLink = "http://wxkf.gofaner.com/enter/";
+    var shareLink = "http://wxkf.gofaner.com/entry/";
 
 	var descContent = "";
 
@@ -14,7 +14,7 @@
         var wxData = {
             "appId": "",
             "imgUrl" : imgUrl,
-            "link" : shareLink + "?referId=" + encodeURIComponent(ns.game.params.openId),
+            "link" : shareLink,
             "desc" : descContent,
             "title" : ""
         };
