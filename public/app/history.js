@@ -41,6 +41,9 @@
 		if (current) {
 			typeof ns.game[current] === 'function' && ns.game[current].apply(ns.game);
 		} else {
+		    WeixinApi.ready(function(Api) {
+		    	Api.closeWindow();
+		    });
 			ns.game[root].apply(ns.game);
 		}
 	};
