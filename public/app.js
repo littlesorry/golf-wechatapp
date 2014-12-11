@@ -440,13 +440,13 @@
 				this.openPage = buildBackground("openPage", "page3");
 
 				var openBtn = new Q.Button({id:"openBtn", image: ns.R.getImage("button")});
-				openBtn.setUpState({rect:[0,0,390,79]});
+				openBtn.setUpState({rect:[0,0,390,430]});
 				openBtn.width= 390;
-				openBtn.height = 79;
+				openBtn.height = 430;
 				openBtn.scaleX = this.openPage.scaleX;
 				openBtn.scaleY = this.openPage.scaleY;
 				openBtn.x = this.width * 0.2;
-				openBtn.y = this.height * 0.499;
+				openBtn.y = this.height * 0.195;
 				openBtn.on(game.EVENTS.TAP, function(e) {
 					if (!inDraw) {
 						inDraw = true;
@@ -501,13 +501,13 @@
 				this.reopenPage = buildBackground("reopenPage", "page3");
 
 				var reopenBtn = new Q.Button({id:"reopenBtn", image: ns.R.getImage("button")});
-				reopenBtn.setUpState({rect:[0,0,390,79]});
+				reopenBtn.setUpState({rect:[0,0,390,430]});
 				reopenBtn.width= 390;
-				reopenBtn.height = 79;
+				reopenBtn.height = 430;
 				reopenBtn.scaleX = this.reopenPage.scaleX;
 				reopenBtn.scaleY = this.reopenPage.scaleY;
 				reopenBtn.x = this.width * 0.2;
-				reopenBtn.y = this.height * 0.499;
+				reopenBtn.y = this.height * 0.195;
 				reopenBtn.on(game.EVENTS.TAP, function(e) {
 					if (resp.count > 1) {
 						ns.history.replace("displayPage4", "#displayPage4");
