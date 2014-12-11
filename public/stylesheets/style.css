@@ -103,9 +103,13 @@ body, html{height: 100%;}
 }
 
 .ui-paragraph {
+	max-width: 250px;
 	position: absolute;
 	z-index: 99999;
 	margin: 0;
+	background: none;
+	border: none;
+	outline: none;
 	transform-origin: left top;
 	-webkit-transform-origin: left top;
 }

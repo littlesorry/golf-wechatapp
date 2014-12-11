@@ -20,17 +20,15 @@
 			"transform": "scale(" + this.option.style.sX + ", " + this.option.style.sY + ")",
 			"-webkit-transform": "scale(" + this.option.style.sX + ", " + this.option.style.sY + ")"
 		});
-
-		this.$.text(this.option.text);
 	};
 
 	paragraph.prototype.render = function() {
-		this.$.appendTo("body");
+		this.$.appendTo("#stage");
 		return this;
 	};
 
 	paragraph.prototype.text = function(text) {
-		this.$.text(text + "");
+		this.$.text(" " + text + " ");
 		return this;
 	}
 

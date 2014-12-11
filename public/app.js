@@ -43,33 +43,13 @@
 		// TODO
 		ns.R.init();
 		this.startup();
-
-		// var loader = new Q.ImageLoader();
-		// loader.addEventListener("loaded", Q.delegate(this.onLoadLoaded, this));
-		// loader.addEventListener("complete", Q.delegate(this.onLoadComplete, this));
-		// loader.load(ns.R.assets);
 	};
-
-	// game.onLoadLoaded = function(e) {
-	// 	this.loader.innerHTML = "正在加载资源中，请稍候...<br>";
-	// 	this.loader.innerHTML += "(" + Math.round(e.target.getLoaded() / e.target.getTotal() * 100) + "%)";
-	// };
-
-	// game.onLoadComplete = function(e) {
-	// 	e.target.removeAllEventListeners();
-	// 	Q.getDOM("container").removeChild(this.loader);
-	// 	this.loader = null;
-		
-	// 	ns.R.init(e.images);
-
-	// 	this.startup();
-	// };
 
 	game.startup = function() {
 		if(Q.isWebKit && Q.supportTouch)
 		{
-			document.body.style.webkitTouchCallout = "none";
-			document.body.style.webkitUserSelect = "none";
+			// document.body.style.webkitTouchCallout = "none";
+			// document.body.style.webkitUserSelect = "none";
 			document.body.style.webkitTextSizeAdjust = "none";
 			document.body.style.webkitTapHighlightColor = "rgba(0,0,0,0)";
 		}
@@ -89,14 +69,13 @@
 		}
 		
 		//创建舞台
-		this.stage = new Q.Stage({width:this.width, height:this.height, context:this.context, update:Q.delegate(this.update, this)});
+		this.stage = new Q.Stage({id: "stage", width:this.width, height:this.height, context:this.context, update:Q.delegate(this.update, this)});
 
 		var timer = new Q.Timer(1000 / 30);
 		timer.addListener(this.stage);
 		timer.addListener(Q.Tween);
 		timer.start();
 		this.timer = timer;
-
 
 		//注册事件
 		var em = new Q.EventManager();
@@ -331,7 +310,6 @@
 					, {
 						id:"ageInput"
 						, type: "text"
-						// , maxlength: 3
 						, className: "ui-item"
 						, style : {
 							position:"absolute",
@@ -672,7 +650,7 @@
 					id: "silverCodeParagraph",
 					style: {
 						x: 0.45,
-						y: 0.391,
+						y: 0.392,
 						font: "40px arial",
 						lineHeight: "35px",
 						sX: game.silverPrizePage.scaleX,
