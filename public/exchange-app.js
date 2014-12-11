@@ -240,7 +240,7 @@
 			goBtn.scaleX = this.resultPage.scaleX;
 			goBtn.scaleY = this.resultPage.scaleY;
 			goBtn.x = this.width * 0.145;
-			goBtn.y = this.height * 0.745;
+			goBtn.y = this.height * ((status === 'fail' || status === 'error') ? 0.78 : 0.745);
 			goBtn.on(game.EVENTS.TAP, function(e) {
 				if (lastStatus === 'fail' || lastStatus === 'error') {
 					game.displayPage16();
