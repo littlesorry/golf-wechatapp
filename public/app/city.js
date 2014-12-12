@@ -98,14 +98,22 @@
 
 		var panel = $(template({"items": items}));
 		if (Q.isAndroid) {
-			panel.appendTo('body')
-			.one(events[2], "a", function() {
-				panel.addClass("zoomOut");
-				panel.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-					panel.remove();
-				});
-				callback && callback($(this).text());
+			panel.appendTo('body');
+			$("a", panel).tappable({
+				callback: function() {
+					if (panel.hasClass("zoomOut")) {
+						return;
+					}
+					panel.addClass("zoomOut");
+					callback && callback($(this).text());
+					panel.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+						panel.remove();
+					});
+				},
+				touchDelay: 200,
+				cancelOnMove: true
 			});
+
 		} else {
 			panel.css({
 				"left": "0",
