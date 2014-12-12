@@ -113,7 +113,6 @@
 				touchDelay: 200,
 				cancelOnMove: true
 			});
-
 		} else {
 			panel.css({
 				"left": "0",
