@@ -12,12 +12,12 @@
 	];
 
 	function initLocationPosition(text, idx) {
-		text.x = ns.game.width * 0.075;
+		text.x = ns.game.width * 0.07;
 		text.y = ns.game.height * yArchors[idx%5];
 	}
 
 	function initRemainingPosition(text, idx) {
-		text.x = ns.game.width * 0.78;
+		text.x = ns.game.width * 0.83;
 		text.y = ns.game.height * (yArchors[idx%5] + 0.012);
 	}
 
@@ -35,7 +35,7 @@
 		// add next batch
 		for (var i = page * 5; i < data.length && i < (page + 1) * 5; i++) {
 			var shopText = new Q.Text({id: "shopText"});
-			shopText.width = ns.game.state === "silver" ? 530 : 375;
+			shopText.width = ns.game.state === "silver" ? 530 : 460;
 			shopText.height = 80;
 			shopText.scaleX = ns.game.cityResultPage.scaleX;
 			shopText.scaleY = ns.game.cityResultPage.scaleY;
@@ -51,7 +51,7 @@
 
 			if (ns.game.state === "gold") {
 				var remainingText = new Q.Text({id: "remainingText"});
-				remainingText.width = 120;
+				remainingText.width = 65;
 				remainingText.height = 52;
 				remainingText.scaleX = ns.game.cityResultPage.scaleX;
 				remainingText.scaleY = ns.game.cityResultPage.scaleY;
