@@ -43,7 +43,7 @@
 			shopText.lineSpacing = 29; 
 			shopText.color = "#fff";
 			shopText.text = data[i].address;
-			shopText.font = "26px 黑体";
+			shopText.font = "24px 黑体";
 			initLocationPosition(shopText, i);
 
 			ns.game.stage.addChild(shopText);
