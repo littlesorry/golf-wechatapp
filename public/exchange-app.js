@@ -119,6 +119,7 @@
 		}
 	}
 
+	var doExchange = false;
 	game.displayPage16 = function() {	
 		NProgress.start();
 		if(this.exchangePage == null) {
@@ -139,23 +140,27 @@
 					return;
 				}
 
-				NProgress.start();
-				$.get("/exchange", {
-					couponCode: $("#exchangeInput").val(),
-					shopCode: $("#shopNoInput").val()
-				}).done(function(resp) {
-					NProgress.done();
+				if (!doExchange) {
+					doExchange = true;
+					NProgress.start();
+					$.get("/exchange", {
+						couponCode: $("#exchangeInput").val(),
+						shopCode: $("#shopNoInput").val()
+					}).done(function(resp) {
+						doExchange = false;
+						NProgress.done();
 
-					if (resp.status === "fail: openId not matched") {
-						alert("串码与微信号不匹配！");
-						return;
-					}
+						if (resp.status === "fail: openId not matched") {
+							alert("串码与微信号不匹配！");
+							return;
+						}
 
-					$("#exchangeInput").hide();
-					$("#shopNoInput").hide();		
-					ns.history.push("displayPage17", "#displayPage17");
-					game.displayPage17(resp.status);
-				}) ;
+						$("#exchangeInput").hide();
+						$("#shopNoInput").hide();		
+						ns.history.push("displayPage17", "#displayPage17");
+						game.displayPage17(resp.status);
+					});
+				}
 			});
 
 			this.exchangeBtn = exchangeBtn;
